@@ -1,24 +1,34 @@
-# README
+# さんぽ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
+地元密着型 お出かけスポットSNS
 
-Things you may want to cover:
+### テーマを選んだ理由
+急速に発展した地元にはずっと住んでいる私にも知らないお店や施設がたくさんできました。
+おしゃれなケーキ屋さんやコーヒーショップ、有名チェーン店、きれいになった運動公園など…散歩すれば必ずと言っていいほど初めて見るものばかりです。
+せっかくならもっと知りたいと思い、『地元密着型 お出かけスポットSNS』を作ろうと考えました。
 
-* Ruby version
+### ターゲットユーザ
+* 都心や繫華街に行くほどではないがいつもと違うところへお出かけしたい！
+* お手軽に行けるお店を見つけたい！
+* 地元のいいところを知ってほしい！
 
-* System dependencies
+### 主な利用シーン
+* 急にお出かけしたくなっちゃった！ 近所にいいお店ないかな？
+* 子供が外で遊びたがってる！ 気軽に行ける広くていっぱい遊べるところは…？
+* こんなに素敵なお店あるなんて！ みんなにも知ってほしい！
 
-* Configuration
+## 設計書
 
-* Database creation
 
-* Database initialization
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
