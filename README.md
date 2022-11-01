@@ -21,8 +21,6 @@
 * 素敵なお店に出会った時 …みんなにも知ってほしい！
 
 ## 設計書
-* 実装機能リスト
-　　https://docs.google.com/spreadsheets/d/1Ighaj-pmWWEpxpscis3-82tFH69JJfob5JBK3TEplNQ/edit?usp=sharing
 * ワイヤーフレーム
 　　https://drive.google.com/file/d/1kMqQLFHMsA6ppyxGt2kpMzngVs9-jqty/view?usp=sharing
 * ER図
