@@ -29,7 +29,9 @@
 　　https://drive.google.com/file/d/1sZ0DJZMUgt9CZF7ba4Ehzs4mFGa6X-Wl/view?usp=sharing
 * ER図
 
+　　https://drive.google.com/file/d/1lvYKCgkMR2D1mzYY0523ZaciHnaqqC-g/view?usp=sharing
 * テーブル定義書
+
 
 
 ## 開発環境
