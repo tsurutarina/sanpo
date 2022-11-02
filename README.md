@@ -24,6 +24,9 @@
 * ワイヤーフレーム
 
 　　https://drive.google.com/file/d/1kMqQLFHMsA6ppyxGt2kpMzngVs9-jqty/view?usp=sharing
+* 画面遷移図
+
+　　https://drive.google.com/file/d/1sZ0DJZMUgt9CZF7ba4Ehzs4mFGa6X-Wl/view?usp=sharing
 * ER図
 
 * テーブル定義書
