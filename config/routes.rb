@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
-  
+
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
-  
+
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
+  # ゲストログイン
+  devise_scope :customer do
+    post "customers/guest_sign_in" => "customers/sessions#guest_sign_in"
+  end
 
   scope module: :public do
     root to: "homes#top"
@@ -22,7 +26,7 @@ Rails.application.routes.draw do
     end
     resources :posts, except: [:show, :new, :index, :edit, :create, :update, :destroy] do
       resources :post_comments, only: [:create, :destroy]
-      resources :favorites, only: [:index, :create, :destroy]
+      resource :favorites, only: [:create, :destroy]
     end
     get "search" => "searches#search"
   end
@@ -30,7 +34,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "homes#top"
     resources :customers, only: [:show, :edit, :update]
-    resources :spot, only: [:index, :destroy]
+    resources :spots, only: [:index, :destroy]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
