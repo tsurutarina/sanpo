@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
+  
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: "public/sessions"
@@ -20,7 +22,7 @@ Rails.application.routes.draw do
     end
     resources :posts, except: [:show, :new, :index, :edit, :create, :update, :destroy] do
       resources :post_comments, only: [:create, :destroy]
-      resource :favorites, only: [:create, :destroy]
+      resources :favorites, only: [:index, :create, :destroy]
     end
     get "search" => "searches#search"
   end
