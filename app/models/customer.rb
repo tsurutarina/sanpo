@@ -5,9 +5,9 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   def self.guest
-    find_or_create_by!(name: 'ゲストユーザー' ,email: 'guest@example.com') do |customer|
+    find_or_create_by!(nickname: 'ゲストユーザー' ,email: 'guest@example.com') do |customer|
       customer.password = SecureRandom.urlsafe_base64
-      customer.name = "ゲストユーザー"
+      customer.nickname = "ゲストユーザー"
     end
   end
 

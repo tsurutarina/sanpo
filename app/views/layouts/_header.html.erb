@@ -24,6 +24,7 @@
           </li>
         <% elsif customer_signed_in? %>
           <li>
+            <!--できない-->
             <%=  link_to root_path, class: 'nav-link text-dark' do %>
               いいね一覧
             <% end %>
@@ -50,6 +51,7 @@
             <% end %>
           </li>
           <li>
+            <!--できない-->
             <%= link_to customers_guest_sign_in_path, method: :post, class: 'nav-link text-dark' do %>
               ゲストログイン
             <% end %>
