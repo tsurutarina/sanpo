@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <table>
+      <%= @posts.each do |posts| %>
+      <tr>
+        <td>
+          <% if posts.image.attached? %>
+            <%= image_tag posts.image, size: "200x200" %>
+          <% else %>
+            <%= image_tag 'spot', size: "200x200" %>
+          <% end %>
+        </td>
+        <tb>
+          <%= posts.address %><br>
+          <%= posts.body %>
+        </tb>
+      </tr>
+      <% end %>
+    </table>
+
+  </div>
+
+  <div class="row">
+    <%= form_with model: @post, url: posts_path do |f| %>
+    <div class="form-group">
+      <%= f.label :spot_image, "画像"%>
+      <%= f.file_field :spot_image, accept: "image/*" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :address, "住所"%>
+      <%= f.text_field :address, class:"col-9", placeholder: "千葉県流山市おおたかの森東1-1-1" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :body, "本文"%>
+      <%= f.text_area :body, cols:'80', rows:'4', placeholder: "みんなに共有しよう！" %>
+    </div>
+    <div class="form-action">
+      <%= f.submit "投稿する", class: "btn btn-outline-success" %>
+    </div>
+    <% end %>
+  </div>
+</div>

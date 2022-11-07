@@ -14,17 +14,16 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    root to: "homes#top"
+    # root to: "homes#top"
+    root to: "posts#index"
     get "/about" => "homes#about", as: 'about'
     resources :customers, only: [:show, :edit, :update] do
       resource :relationships, only: [:create, :destroy]
       get "followings" => "relationships#followings", as: "followings"
       get "followers" => "relationships#followers", as: "followers"
     end
-    resources :spots, only: [:new, :index, :create] do
-      resources :posts, only: [:index, :show, :create, :destroy]
-    end
-    resources :posts, except: [:show, :new, :index, :edit, :create, :update, :destroy] do
+    # resources :spots, only: [:new, :create]
+    resources :posts, only: [:show, :create, :destroy] do
       resources :post_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end

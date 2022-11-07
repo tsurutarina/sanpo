@@ -4,6 +4,14 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_one_attached :profile_image
+
+  has_many :posts, dependent: :destroy
+
+  def get_profile_image
+    (profile_image.attached?) ? profile_image : 'user.jpg'
+  end
+
   def self.guest
     find_or_create_by!(nickname: 'ゲストユーザー' ,email: 'guest@example.com') do |customer|
       customer.password = SecureRandom.urlsafe_base64

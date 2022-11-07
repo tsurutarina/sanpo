@@ -24,6 +24,11 @@
           </li>
         <% elsif customer_signed_in? %>
           <li>
+            <li>
+            <%= link_to customer_path(current_customer.id), class: 'nav-link text-dark' do %>
+              マイページ
+            <% end %>
+          </li>
             <!--できない-->
             <%=  link_to root_path, class: 'nav-link text-dark' do %>
               いいね一覧

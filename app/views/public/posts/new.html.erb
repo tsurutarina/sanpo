@@ -1,0 +1,16 @@
+
+    <%= form_with model: @spot, url: spots_path do |f| %>
+      <div class="field">
+        <%= f.label:画像%>
+        <%= f.file_field:spot_image,accept:"image/*" %>
+      </div>
+      <div class="field">
+        <%= f.label :spot_name, "スポット名" %>
+        <%= f.text_field :spot_name, class:"col-6 offset-1", autofocus: true, autocomplete: "spot_name" %>
+      </div>
+      <div class="field">
+        <%= f.label :spot_address, "住所" %>
+        <%= f.text_field :spot_address, class:"col-6 offset-1", autofocus: true, autocomplete: "spot_address" %>
+      </div>
+        <%= f.submit "新規登録", class: 'btn btn-success' %>
+    <% end %>

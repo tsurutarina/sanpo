@@ -6,6 +6,32 @@
       <div class="spot-search">
         <input id="address" type="textbox" value="GeekSalon">
         <input type="button" value="調べる" onclick="codeAddress()">
+
+        <%= form_with(model: @spot, local: true) do |f| %>
+        <div class="field">
+          <%= f.label:画像%>
+          <%= f.file_field:spot_image,accept:"image/*" %>
+      　</div>
+        <div class="field">
+          <%= f.label :spot_name, "スポット名" %><br>
+          <%= f.text_field :spot_name %>
+        </div>
+        <div class="field">
+          <%= f.label :spot_address, "住所" %><br>
+          <%= f.text_field :spot_address %>
+        </div>
+        <div class="field">
+          <%= f.label :latitude,"緯度" %>
+          <%= f.hidden_field :latitude,:value =>"緯度", id: :latitude %>
+        </div>
+        <div class="field">
+          <%= f.label :longitude,"経度" %>
+          <%= f.hidden_field :longitude,:value =>"経度", id: :longitude %>
+        </div>
+        <div class="actions">
+          <%= f.submit "新規登録" %>
+        </div>
+        <% end %>
       </div>
 
     </div>
@@ -13,12 +39,14 @@
 
   <div class="col-9">
     <!--地図-->
+    <p>マーカーをドラック＆ドロップで位置の調整ができます。<p>
     <div id="display"></div>
     <div id='map' style="height: 600px; width: 100%;"></div>
   </div>
 </div>
 　<script>
-　　let map
+　  let map
+　  let marker
 　　const display = document.getElementById('display')
 
     function initMap(){
@@ -26,18 +54,12 @@
       map = new google.maps.Map(document.getElementById('map'), {
         // デフォルト表示？
         center: {lat: 35.8716, lng:139.9249},
-        zoom: 12,
-      });
-      console.log(document.getElementById('map'));
-      //console.log(map);
-      // ピン位置指定
-      marker = new google.maps.Marker({
-        position:  {lat: 35.8716, lng:139.9249},
-        map: map
+        zoom: 16,
       });
     }
 
     let geocoder
+    let aft
     // 検索ボタン押されたら実行
     function codeAddress(){
       // 入力取得
@@ -45,10 +67,28 @@
       geocoder.geocode( { 'address': inputAddress}, function(results, status) {
         // 検索ヒット時、緯度経度更新
         if (status == 'OK') {
+          // マーカー複数出ないように
+          if (aft == true){
+            maker.setMap(map);
+          }
+          // 新しくマーカー作成
           map.setCenter(results[0].geometry.location);
-          var marker = new google.maps.Marker({
+          marker = new google.maps.Marker({
             map: map,
             position: results[0].geometry.location
+            // ドラッグ可能にする
+            // draggable: true
+          });
+          //二度目以降か判断
+          aft = true
+          //検索した時に緯度経度を入力する
+          document.getElementById('latitude').value = results[0].geometry.location.lat();
+          document.getElementById('longitude').value = results[0].geometry.location.lng();
+          // マーカーのドロップ（ドラッグ終了）時のイベント
+          google.maps.event.addListener( marker, 'dragend', function(ev){
+            // イベントの引数evの、プロパティ.latLngが緯度経度
+            document.getElementById('latitude').value = ev.latLng.lat();
+            document.getElementById('longitude').value = ev.latLng.lng();
           });
           display.textContent = "検索結果：" + results[ 0 ].geometry.location
         } else {
