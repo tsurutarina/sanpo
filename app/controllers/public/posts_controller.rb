@@ -7,14 +7,16 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @post_new = Post.new
   end
 
   def create
     @post = Post.new(post_params)
+    @post.customer_id = current_customer.id
     if @post.save
       redirect_to root_path, notice: "投稿しました"
     else
-      redirect_to root_path
+      redirect_to root_path, notice: "投稿できませんでした"
     end
   end
 
@@ -26,6 +28,6 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:body, :address,:spot_image)
+    params.require(:post).permit(:spot_image, :address, :spot_name, :body)
   end
 end

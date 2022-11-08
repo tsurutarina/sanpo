@@ -1,42 +1,58 @@
-<div class="container">
+<!--<div class="container">-->
   <div class="row">
-    <table>
-      <%= @posts.each do |posts| %>
-      <tr>
-        <td>
-          <% if posts.image.attached? %>
-            <%= image_tag posts.image, size: "200x200" %>
-          <% else %>
-            <%= image_tag 'spot', size: "200x200" %>
-          <% end %>
-        </td>
-        <tb>
-          <%= posts.address %><br>
-          <%= posts.body %>
-        </tb>
-      </tr>
+    <div class="col-3">
+      <!--サイドバー-->
+      <%= form_with model: @post, url: posts_path do |f| %>
+        <div class="form-group ml-3">
+          <%= f.label :spot_image, "画像" %><br>
+          <%= f.file_field :spot_image, accept: "image/*" %><br>
+        <!--</div>-->
+        <!--<div class="form-group ml-3">-->
+          <%= f.label :address, "住所" %><br>
+          <%= f.text_field :address, class:"col-9", placeholder: "千葉県流山市おおたかの森東1-1-1" %><br>
+        <!--</div>-->
+        <!--<div class="form-group ml-3">-->
+          <%= f.label :spot_name, "スポット" %><br>
+          <%= f.text_field :spot_name, class:"col-9", placeholder: "流山市おおたかの森駅" %><br>
+        <!--</div>-->
+        <!--<div class="form-group ml-3">-->
+          <%= f.label :body, "本文" %><br>
+          <%= f.text_area :body, class:"col-10", placeholder: "みんなに共有しよう！" %><br>
+        <!--</div>-->
+        <!--<div class="form-action"><br>-->
+          <%= f.submit "投稿する", class: "btn btn-outline-success offset-7" %>
+        </div>
       <% end %>
+    </div>
+
+    <div class="col-9">
+    <table class="table table-hover table-inverse">
+      <tbody>
+        <% @posts.each do |posts| %>
+        <tr>
+          <td>
+            <%= link_to post_path(posts.id) do %>
+              <% if posts.spot_image.attached? %>
+                <%= image_tag posts.spot_image, size: "100x100" %>
+              <% else %>
+                <%= image_tag 'spot', size: "100x100" %>
+              <% end %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to customer_path(posts.customer.id), class: 'nav-link text-dark' do %>
+              <%= image_tag posts.customer.get_profile_image, size:'70x70', class: "rounded-circle" %>
+            <% end %>
+          </td>
+          <td>
+            <i class="fa-solid fa-map-location-dot"></i> : <%= posts.spot_name %><br>
+            <%= posts.body %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
     </table>
+    </div>
 
   </div>
-
-  <div class="row">
-    <%= form_with model: @post, url: posts_path do |f| %>
-    <div class="form-group">
-      <%= f.label :spot_image, "画像"%>
-      <%= f.file_field :spot_image, accept: "image/*" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :address, "住所"%>
-      <%= f.text_field :address, class:"col-9", placeholder: "千葉県流山市おおたかの森東1-1-1" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :body, "本文"%>
-      <%= f.text_area :body, cols:'80', rows:'4', placeholder: "みんなに共有しよう！" %>
-    </div>
-    <div class="form-action">
-      <%= f.submit "投稿する", class: "btn btn-outline-success" %>
-    </div>
-    <% end %>
-  </div>
-</div>
+<!--</div>-->

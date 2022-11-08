@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row mb-3">
+    <h4>ユーザー情報編集</h4>
+  </div>
+
+    <div class="col">
+      <% if @customer.errors.any? %>
+        <div class="alert alert-warning">
+          <ul>
+            <% @customer.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+
+  <%= form_with model: @customer, url: customer_path, local:true do |f| %>
+    <div class="form-group row">
+      <%= f.label :profile_image, "アイコン", class: "col-2" %>
+      <%= f.file_field :profile_image, class: "offset-1", accept: "image/*" %>
+    </div>
+    <div class="form-group row">
+      <%= f.label :nickname, "ユーザー名", class: "col-2" %>
+      <%= f.text_field :nickname, class: "col-md-5 offset-1" %>
+    </div>
+    <div class="form-group row d-flex">
+      <%= f.submit "編集内容を保存", class: "btn btn-outline-primary offset-5 mt-4" %>
+    </div>
+  <% end %>
+</div>

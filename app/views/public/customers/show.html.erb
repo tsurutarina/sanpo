@@ -3,21 +3,36 @@
     <!--サイドバーテンプレ-->
     <!--アイコン、ユーザー名、フォロー数、フォロワー数、いいね一覧、ユーザー情報編集-->
     <table>
-      <tr><%= image_tag @customer.get_profile_image, size:'100x100' %></tr>
+      <tr><%= image_tag @customer.get_profile_image, size:'100x100', class: "rounded-circle" %></tr>
       <tr>
         <th>ユーザー：</th>
         <th><%= @customer.nickname %></th>
       </tr>
-      <% if @customer.customer == current_customer %>
       <tr>
-        <th></th>
+        <th>フォロー数：</th>
+        <th>？</th>
       </tr>
-      <% end %>
+      <tr>
+        <th>フォロワー数：</th>
+        <th>？</th>
+      </tr>
+      <tr>
+        <th>いいね！数：</th>
+        <th>？</th>
+      </tr>
     </table>
+    <div class="side-info">
+      <% if @customer.nickname != "ゲストユーザー" %>
+        <%= link_to edit_customer_path(@customer), class: "btn btn-outline-secondary col-9" do %>
+          <i class="fas fa-user-cog"></i>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 
   <div class='col-md-8 offset-md-1'>
     <!--spotのindexてんぷれ？-->
+    <h5><%= @customer.nickname %> さんの投稿</h5>
   </div>
 
 </div>
