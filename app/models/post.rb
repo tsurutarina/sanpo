@@ -14,4 +14,8 @@ class Post < ApplicationRecord
     end
   end
 
+  def self.looks(search, word)
+    where("spot_name LIKE?", "%#{word}%")
+  end
+
 end

@@ -1,5 +1,4 @@
 class Public::CustomersController < ApplicationController
-  # before_action :ensure_correct_customer, only: [:edit, :update]
   before_action :ensure_guest_customer, only: [:edit]
 
   def show
@@ -30,13 +29,6 @@ class Public::CustomersController < ApplicationController
   def customer_params
     params.require(:customer).permit(:nickname, :profile_image)
   end
-
-  # def ensure_correct_customer
-  #   @customer = Cstomer.find(params[:id])
-  #   unless @customer == current_customer
-  #     redirect_to customer_path(current_user.id)
-  #   end
-  # end
 
   def ensure_guest_customer
     @customer = Customer.find(params[:id])

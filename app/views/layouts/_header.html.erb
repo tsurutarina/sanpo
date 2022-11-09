@@ -6,6 +6,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
+        <!--管理者ログインしたら？-->
         <% if  admin_signed_in? %>
           <li>
             <%= link_to admin_root_path, class: 'nav-link text-dark' do %>
@@ -22,6 +23,7 @@
               ログアウト
             <% end %>
           </li>
+        <!--ログインしたら？-->
         <% elsif customer_signed_in? %>
             <!--できない-->
             <%=  link_to root_path, class: 'nav-link text-dark' do %>
@@ -34,12 +36,16 @@
             <% end %>
           </li>
           <li>
+            <%= render "public/searches/form" %>
+          </li>
+          <li>
             <% if current_customer.nickname != "ゲストユーザー" %>
               <%= link_to customer_path(current_customer.id), class: 'nav-link text-dark' do %>
                 <%= image_tag current_customer.get_profile_image, size:'50x50', class: "rounded-circle" %>
               <% end %>
             <% end %>
           </li>
+          <!--未ログイン-->
         <% else %>
           <li>
             <%= link_to about_path, class: 'nav-link text-dark' do %>
@@ -61,6 +67,9 @@
             <%= link_to public_guest_sign_in_path, method: :post, class: 'nav-link text-dark' do %>
               ゲストログイン
             <% end %>
+          </li>
+          <li>
+            <%= render "public/searches/form" %>
           </li>
         <% end %>
         </ul>

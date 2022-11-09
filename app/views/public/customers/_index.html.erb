@@ -1,0 +1,18 @@
+<table class="table table-hover table-inverse">
+  <tbody>
+    <% customers.each do |customer| %>
+    <tr>
+      <td class="col-1">
+        <%= link_to customer_path(customer.id) do %>
+          <%= image_tag customer.get_profile_image, size:'70x70', class: "rounded-circle" %>
+        <% end %>
+      </td>
+      <td>
+        <%= customer.nickname %><br>
+        <i class="fa-solid fa-user-plus ml-3"></i> : ？
+        <i class="fa-solid fa-users ml-4"></i> : ？
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

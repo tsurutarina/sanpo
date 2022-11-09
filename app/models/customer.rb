@@ -13,6 +13,10 @@ class Customer < ApplicationRecord
     (profile_image.attached?) ? profile_image : 'user.jpg'
   end
 
+  def self.looks(search, word)
+    where("nickname LIKE?", "%#{word}%")
+  end
+
   def self.guest
     find_or_create_by!(nickname: 'ゲストユーザー' ,email: 'guest@example.com') do |customer|
       customer.password = SecureRandom.urlsafe_base64

@@ -1,0 +1,17 @@
+<div class="row">
+
+  <div class="col-3 mi-3">
+    <!--render "public/customers/side-info-form"-->
+  </div>
+
+  <div class="col-8">
+    <h2>"<%= @word %>"の検索結果</h2>
+      <!--検索対象スポット-->
+      <% if @range == "スポット" %>
+        <%= render "public/posts/index", posts: @posts %>
+      <% else %>
+        <%= render "public/customers/index", customers: @customers %>
+      <% end %>
+  </div>
+
+</div>
