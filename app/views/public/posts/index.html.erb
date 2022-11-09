@@ -1,31 +1,55 @@
-<!--<div class="container">-->
-  <div class="row">
-    <div class="col-3">
-      <!--サイドバー-->
+<div class="row">
+  <div class="col-3 ml-3">
+    <!--テンプレ元-->
+    <% if customer_signed_in? %>
+      <table>
+        <tr><%= image_tag current_customer.get_profile_image, size:'100x100', class: "rounded-circle" %></tr>
+        <tr>
+          <th>ユーザー：</th>
+          <th><%= current_customer.nickname %></th>
+        </tr>
+        <tr>
+          <th>フォロー数：</th>
+          <th>？</th>
+        </tr>
+        <tr>
+          <th>フォロワー数：</th>
+          <th>？</th>
+        </tr>
+        <tr>
+          <th>いいね！数：</th>
+          <th>？</th>
+        </tr>
+      </table>
+      <div class="side-info">
+        <% if current_customer.nickname != "ゲストユーザー" %>
+          <%= link_to edit_customer_path(current_customer.id), class: "btn btn-outline-secondary col-9" do %>
+            <i class="fas fa-user-cog"></i>
+          <% end %>
+        <% end %>
+      </div>
+
       <%= form_with model: @post, url: posts_path do |f| %>
-        <div class="form-group ml-3">
+        <div class="form-group mt-4">
           <%= f.label :spot_image, "画像" %><br>
           <%= f.file_field :spot_image, accept: "image/*" %><br>
-        <!--</div>-->
-        <!--<div class="form-group ml-3">-->
+
           <%= f.label :address, "住所" %><br>
           <%= f.text_field :address, class:"col-9", placeholder: "千葉県流山市おおたかの森東1-1-1" %><br>
-        <!--</div>-->
-        <!--<div class="form-group ml-3">-->
+
           <%= f.label :spot_name, "スポット" %><br>
           <%= f.text_field :spot_name, class:"col-9", placeholder: "流山市おおたかの森駅" %><br>
-        <!--</div>-->
-        <!--<div class="form-group ml-3">-->
+
           <%= f.label :body, "本文" %><br>
           <%= f.text_area :body, class:"col-10", placeholder: "みんなに共有しよう！" %><br>
-        <!--</div>-->
-        <!--<div class="form-action"><br>-->
-          <%= f.submit "投稿する", class: "btn btn-outline-success offset-7" %>
+
+          <%= f.submit "投稿", class: "btn btn-outline-success offset-8 rounded-pill" %>
         </div>
       <% end %>
+    <% end %>
     </div>
 
-    <div class="col-9">
+    <div class="col-8">
     <table class="table table-hover table-inverse">
       <tbody>
         <% @posts.each do |posts| %>
@@ -46,7 +70,9 @@
           </td>
           <td>
             <i class="fa-regular fa-flag"></i>  <%= posts.spot_name %><br>
-            <i class="fa-regular fa-comment"></i>  <%= posts.body %>
+            <i class="fa-regular fa-comment"></i> <%= posts.body %><br>
+            <i class="fa-regular fa-comments ml-3"></i> : <%= posts.post_comments.count %>
+            <i class="fa-regular fa-heart ml-4"></i> : ？
           </td>
         </tr>
         <% end %>
@@ -55,4 +81,3 @@
     </div>
 
   </div>
-<!--</div>-->
