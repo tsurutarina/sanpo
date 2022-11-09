@@ -24,6 +24,21 @@ class Public::CustomersController < ApplicationController
     end
   end
 
+  def unsubscribe
+    @customer = Customer.find(params[:id])
+  end
+
+  def withdrawal
+    @customer = Customer.find(params[:id])
+    # unless @customer == current_customer
+    #   redirect_to customer_path(current_customer.id)
+    # end
+    # is_deletedをtrueに変更、削除フラグ立てる
+    @customer.update(is_deleted: true)
+    reset_session
+    redirect_to root_path, notice: "退会処理を実行しました"
+  end
+
   private
 
   def customer_params
@@ -33,7 +48,7 @@ class Public::CustomersController < ApplicationController
   def ensure_guest_customer
     @customer = Customer.find(params[:id])
     if @customer.nickname == "ゲストユーザー"
-      redirect_to customer_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+      redirect_to customer_path(current_customer.id), notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
     end
   end
 

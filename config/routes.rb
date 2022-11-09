@@ -28,6 +28,10 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
     end
     get "search" => "searches#search"
+    # 退会確認
+    get "/customers/:id/unsubscribe" => "customers#unsubscribe", as: "unsubscribe"
+    # 倫理削除
+    patch "/customers/:id/withdrawal" => "customers#withdrawal", as: "withdrawal"
   end
 
   namespace :admin do

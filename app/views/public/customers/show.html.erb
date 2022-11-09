@@ -1,82 +1,16 @@
 <div class="row">
-  <div class="col-3">
-    <!--サイドバーテンプレ-->
-    <table>
-      <tr><%= image_tag @customer.get_profile_image, size:'100x100', class: "rounded-circle" %></tr>
-      <tr>
-        <th>ユーザー：</th>
-        <th><%= @customer.nickname %></th>
-      </tr>
-      <tr>
-        <th>フォロー数：</th>
-        <th>？</th>
-      </tr>
-      <tr>
-        <th>フォロワー数：</th>
-        <th>？</th>
-      </tr>
-      <tr>
-        <th>いいね！数：</th>
-        <th>？</th>
-      </tr>
-    </table>
-    <div class="side-info">
-      <% if @customer.nickname != "ゲストユーザー" %>
-        <%= link_to edit_customer_path(@customer), class: "btn btn-outline-secondary col-9" do %>
-          <i class="fas fa-user-cog"></i>
-        <% end %>
-      <% end %>
-    </div>
-    <%= form_with model: @post, url: posts_path do |f| %>
-        <div class="form-group ml-3">
-          <%= f.label :spot_image, "画像" %><br>
-          <%= f.file_field :spot_image, accept: "image/*" %><br>
 
-          <%= f.label :address, "住所" %><br>
-          <%= f.text_field :address, class:"col-9", placeholder: "千葉県流山市おおたかの森東1-1-1" %><br>
-
-          <%= f.label :spot_name, "スポット" %><br>
-          <%= f.text_field :spot_name, class:"col-9", placeholder: "流山市おおたかの森駅" %><br>
-
-          <%= f.label :body, "本文" %><br>
-          <%= f.text_area :body, class:"col-10", placeholder: "みんなに共有しよう！" %><br>
-
-          <%= f.submit "送信", class: "btn btn-outline-success offset-8 rounded-pill" %>
-        </div>
-      <% end %>
+  <div class="col-3 ml-3">
+    <% if customer_signed_in? %>
+      <%= render "public/customers/side-info-post", post: @post, current_customer: @customer %>
+    <% end %>
   </div>
 
-  <div class='col-md-9'>
-    <!--spotのindexてんぷれ？-->
+  <div class="col-8">
     <h5><%= @customer.nickname %> さんの投稿</h5>
-      <table class="table table-hover table-inverse">
-      <tbody>
-        <% @posts.each do |posts| %>
-        <tr>
-          <td>
-            <%= link_to post_path(posts.id) do %>
-              <% if posts.spot_image.attached? %>
-                <%= image_tag posts.spot_image, size: "100x100" %>
-              <% else %>
-                <%= image_tag 'spot', size: "100x100" %>
-              <% end %>
-            <% end %>
-          </td>
-          <td>
-            <%= link_to customer_path(posts.customer.id), class: 'nav-link text-dark' do %>
-              <%= image_tag posts.customer.get_profile_image, size:'70x70', class: "rounded-circle" %>
-            <% end %>
-          </td>
-          <td>
-            <i class="fa-regular fa-flag"></i>  <%= posts.spot_name %><br>
-            <i class="fa-regular fa-comment"></i>  <%= posts.body %><br>
-            <i class="fa-regular fa-comments ml-3"></i> : <%= posts.post_comments.count %>
-            <i class="fa-regular fa-heart ml-4"></i> : ？
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+      <div class="col-8">
+        <%= render "public/posts/index", posts: @posts %>
+  </div>
   </div>
 
 </div>
