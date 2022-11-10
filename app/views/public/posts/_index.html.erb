@@ -20,7 +20,7 @@
         <i class="fa-regular fa-flag"></i>  <%= posts.spot_name %><br>
         <i class="fa-regular fa-comment"></i> <%= posts.body %><br>
         <i class="fa-regular fa-comments ml-3"></i> : <%= posts.post_comments.count %>
-        <i class="fa-regular fa-heart ml-4"></i> : ？
+        <i class="fa-regular fa-heart ml-4"></i> : <%= posts.favorites.count %>
       </td>
     </tr>
     <% end %>

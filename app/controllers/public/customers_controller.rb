@@ -1,10 +1,17 @@
 class Public::CustomersController < ApplicationController
   before_action :ensure_guest_customer, only: [:edit]
+  # before_action :set_customer, only: [:favorites]
 
   def show
     @customer = Customer.find(params[:id])
     @post = Post.new
     @posts = @customer.posts
+    # いいね総カウント
+    @customer_posts = @customer.posts
+    @favorites_count = 0
+    @customer_posts.each do |post|
+      @favorites_count += post.favorites.count
+    end
   end
 
   def edit
@@ -39,17 +46,27 @@ class Public::CustomersController < ApplicationController
     redirect_to root_path, notice: "退会処理を実行しました"
   end
 
+  def favorites
+    @customer = Customer.find(params[:id])
+    favorites = Favorite.where(customer_id: @customer.id).pluck(:post_id)
+    @favorite_posts = Post.find(favorites)
+  end
+
   private
 
-  def customer_params
-    params.require(:customer).permit(:nickname, :profile_image)
-  end
+  # def set_customer
+  #   @customer = Customer.find(params[:id])
+  # end
 
   def ensure_guest_customer
     @customer = Customer.find(params[:id])
     if @customer.nickname == "ゲストユーザー"
       redirect_to customer_path(current_customer.id), notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
     end
+  end
+
+  def customer_params
+    params.require(:customer).permit(:nickname, :profile_image)
   end
 
 end

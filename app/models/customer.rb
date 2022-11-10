@@ -6,6 +6,9 @@ class Customer < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  # ユーザーがどの投稿をいいねしてるのか取得
+  has_many :favorited_posts, through: :favorites, source: :post
 
   has_one_attached :profile_image
 
@@ -16,7 +19,7 @@ class Customer < ApplicationRecord
   def self.looks(search, word)
     where("nickname LIKE?", "%#{word}%")
   end
-  
+
   # 退会済みユーザーが同じアカウントでログインできないように
   def active_for_authentication?
     super && (is_deleted == false)

@@ -2,7 +2,7 @@
 
   <div class="col-3 ml-3">
     <% if customer_signed_in? %>
-      <%= render "public/customers/side-info-comment", post: @post, comment: @comment %>
+      <%= render "public/customers/side-info-post", post: @post, favorites_count: @favorites_count %>
     <% end %>
   </div>
 
@@ -12,6 +12,7 @@
     <% else %>
       <%= image_tag 'spot', class: "w-50 rounded" %>
     <% end %>
+
     <table class="table table-borderless">
       <tbody>
         <tr>
@@ -25,11 +26,29 @@
         <tr>
           <td><i class="fa-solid fa-map-location-dot"></i> <%= @post.address %><br>
             <i class="fa-regular fa-flag"></i> <%= @post.spot_name %>
+            <% if current_customer.nickname != "ゲストユーザー" %>
+              <% if @post.customer == current_customer %>
+                <%= link_to "削除", post_path(@post), class: "btn btn-outline-danger btn-sm offset-2", method: :delete %>
+              <% end %>
+            <% end %>
           </td>
         </tr>
         <tr>
           <td>
             <i class="fa-regular fa-comment ml-3"></i> <%= @post.body %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <% if @post.favorited_by?(current_customer) %>
+              <%= link_to post_favorites_path(@post), class: 'nav-link text-danger', method: :delete do %>
+                <i class="fa-solid fa-heart"></i> <%= @post.favorites.count %>
+              <% end %>
+            <% else %>
+              <%= link_to post_favorites_path(@post), class: 'nav-link text-dark', method: :post do %>
+                <i class="fa-regular fa-heart"></i> <%= @post.favorites.count %>
+              <% end %>
+            <% end %>
           </td>
         </tr>
       </tbody>
@@ -51,6 +70,16 @@
         </tr>
       </table>
       <% end %>
+
+      <%= form_with model: [@post, @comment] do |f| %>
+      <div class="form-group">
+        <%= f.label :comment, "コメント" %><br>
+        <%= f.text_area :comment, class:"col-9", placeholder: "思いを伝えよう！" %><br>
+
+        <%= f.submit "送信", class: "btn btn-outline-success offset-8 rounded-pill" %>
+      </div>
+      <% end %>
     </div>
   </div>
+
 </div>

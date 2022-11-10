@@ -21,12 +21,16 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create, :destroy]
       get "followings" => "relationships#followings", as: "followings"
       get "followers" => "relationships#followers", as: "followers"
+      member do
+        get :favorites
+      end
     end
     # resources :spots, only: [:new, :create]
     resources :posts, only: [:show, :create, :destroy] do
       resources :post_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
+    # resources :favorites, only: [:index]
     get "search" => "searches#search"
     # 退会確認
     get "/customers/:id/unsubscribe" => "customers#unsubscribe", as: "unsubscribe"

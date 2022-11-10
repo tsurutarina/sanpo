@@ -5,14 +5,21 @@
     <th><%= current_customer.nickname %></th>
   </tr>
   <tr>
-    <th>フォロー数：</th>
+    <th>フォロー：</th>
     <th>？</th>
   </tr>
   <tr>
-    <th>フォロワー数：</th>
+    <th>フォロワー：</th>
     <th>？</th>
   </tr>
+  <tr>
+    <tr>
+    <th>いいねされた数：</th>
+    <th><%= favorites_count %></th>
+  </tr>
+  </tr>
 </table>
+<% if customer_signed_in? %>
 <div class="side-info">
   <% if current_customer.nickname != "ゲストユーザー" %>
     <%= link_to edit_customer_path(current_customer.id), class: "btn btn-outline-secondary col-9" do %>
@@ -37,4 +44,5 @@
 
     <%= f.submit "投稿", class: "btn btn-outline-success offset-8 rounded-pill" %>
   </div>
+<% end %>
 <% end %>
