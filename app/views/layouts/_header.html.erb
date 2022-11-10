@@ -38,10 +38,8 @@
             <%= render "public/searches/form" %>
           </li>
           <li>
-            <% if current_customer.nickname != "ゲストユーザー" %>
-              <%= link_to customer_path(current_customer.id), class: 'nav-link text-dark' do %>
-                <%= image_tag current_customer.get_profile_image, size:'50x50', class: "rounded-circle" %>
-              <% end %>
+            <%= link_to customer_path(current_customer.id), class: 'nav-link text-dark' do %>
+              <%= image_tag current_customer.get_profile_image, size:'50x50', class: "rounded-circle" %>
             <% end %>
           </li>
           <!--未ログイン-->

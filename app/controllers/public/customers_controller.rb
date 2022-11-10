@@ -1,5 +1,5 @@
 class Public::CustomersController < ApplicationController
-  before_action :ensure_guest_customer, only: [:edit]
+  before_action :ensure_guest_customer, only: [:edit, :unsubscribe, :withdrawal]
   # before_action :set_customer, only: [:favorites]
 
   def show
@@ -23,6 +23,9 @@ class Public::CustomersController < ApplicationController
 
   def update
     @customer = Customer.find(params[:id])
+    unless @customer == current_customer
+      redirect_to customer_path(current_customer.id)
+    end
     if @customer.update(customer_params)
       redirect_to customer_path(current_customer.id), notice: "ユーザー情報を編集しました"
     else
@@ -33,14 +36,16 @@ class Public::CustomersController < ApplicationController
 
   def unsubscribe
     @customer = Customer.find(params[:id])
+    unless @customer == current_customer
+      redirect_to customer_path(current_customer.id)
+    end
   end
 
   def withdrawal
     @customer = Customer.find(params[:id])
-    # unless @customer == current_customer
-    #   redirect_to customer_path(current_customer.id)
-    # end
-    # is_deletedをtrueに変更、削除フラグ立てる
+    unless @customer == current_customer
+      redirect_to customer_path(current_customer.id)
+    end
     @customer.update(is_deleted: true)
     reset_session
     redirect_to root_path, notice: "退会処理を実行しました"
@@ -60,7 +65,7 @@ class Public::CustomersController < ApplicationController
 
   def ensure_guest_customer
     @customer = Customer.find(params[:id])
-    if @customer.nickname == "ゲストユーザー"
+    if @customer.email == "guest@example.com"
       redirect_to customer_path(current_customer.id), notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
     end
   end
