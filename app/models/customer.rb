@@ -26,7 +26,15 @@ class Customer < ApplicationRecord
   def follow(customer_id)
     relationships.create(followed_id: customer_id)
   end
-  
+  # リムーブ処理
+  def unfollow(customer_id)
+    relationships.find_by(followed_id: customer_id).destroy
+  end
+  # フォロしてるか判断
+  def following?(customer)
+    followings.include?(customer)
+  end
+
   # 退会済みユーザーが同じアカウントでログインできないように
   def active_for_authentication?
     super && (is_deleted == false)
