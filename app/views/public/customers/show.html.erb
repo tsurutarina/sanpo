@@ -2,7 +2,7 @@
 
   <div class="col-3 ml-3">
     <% if customer_signed_in? %>
-      <%= render "public/customers/side-info-favorites", post: @post, current_customer: @customer, favorites_count: @favorites_count %>
+      <%= render "public/customers/side-info-favorites", post: @post, customer: @customer, favorites_count: @favorites_count %>
     <% end %>
   </div>
 

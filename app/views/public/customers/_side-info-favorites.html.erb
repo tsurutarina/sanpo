@@ -1,8 +1,8 @@
 <table>
-  <tr><%= image_tag current_customer.get_profile_image, size:'100x100', class: "rounded-circle" %></tr>
+  <tr><%= image_tag customer.get_profile_image, size:'100x100', class: "rounded-circle" %></tr>
   <tr>
     <th>ユーザー：</th>
-    <th><%= current_customer.nickname %></th>
+    <th><%= customer.nickname %></th>
   </tr>
   <tr>
     <th>フォロー：</th>
@@ -21,7 +21,8 @@
 </table>
 <% if customer_signed_in? %>
   <div class="side-info">
-    <% if current_customer.nickname != "ゲストユーザー" %>
+    <!--<= render "public/relationships/btn", customer: customer >-->
+    <% if customer.email != "guest@example.com" %>
       <%= link_to edit_customer_path(current_customer.id), class: "btn btn-outline-secondary col-9" do %>
         <i class="fas fa-user-cog"></i>
       <% end %>
