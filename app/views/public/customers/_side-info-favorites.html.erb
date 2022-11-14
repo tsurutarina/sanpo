@@ -6,11 +6,11 @@
   </tr>
   <tr>
     <th>フォロー：</th>
-    <th>？</th>
+    <th><%= customer.followings.count %></th>
   </tr>
   <tr>
     <th>フォロワー：</th>
-    <th>？</th>
+    <th><%= customer.followers.count %></th>
   </tr>
   <tr>
     <tr>
@@ -21,7 +21,7 @@
 </table>
 <% if customer_signed_in? %>
   <div class="side-info">
-    <!--<= render "public/relationships/btn", customer: customer >-->
+    <%= render "public/relationships/btn", customer: customer %>
     <% if customer.email != "guest@example.com" %>
       <%= link_to edit_customer_path(current_customer.id), class: "btn btn-outline-secondary col-9" do %>
         <i class="fas fa-user-cog"></i>

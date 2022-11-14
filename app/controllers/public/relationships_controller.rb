@@ -15,7 +15,7 @@ class Public::RelationshipsController < ApplicationController
     @customers = customer.followings
     @post = Post.new
   end
-
+  # フォロワー一覧
   def followers
     customer = Customer.find(params[:customer_id])
     @customers = customer.followers
