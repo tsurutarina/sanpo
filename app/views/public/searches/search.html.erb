@@ -7,7 +7,7 @@
   </div>
 
   <div class="col-8">
-    <h2>"<%= @word %>"の検索結果</h2>
+    <h5>"<%= @word %>"の検索結果</h5>
       <!--検索対象スポット-->
       <% if @range == "スポット" %>
         <%= render "public/posts/index", posts: @posts %>

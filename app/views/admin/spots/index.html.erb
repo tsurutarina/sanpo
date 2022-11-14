@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-8 offset-2">
+      <table class="table table-hover table-inverse">
+        <tbody>
+          <% @posts.each do |posts| %>
+          <tr>
+            <td>
+              <%= link_to post_path(posts.id) do %>
+                <% if posts.spot_image.attached? %>
+                  <%= image_tag posts.spot_image, size: "100x100" %>
+                <% else %>
+                  <%= image_tag 'spot', size: "100x100" %>
+                <% end %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to customer_path(posts.customer.id), class: 'nav-link text-dark' do %>
+                <%= image_tag posts.customer.get_profile_image, size:'70x70', class: "rounded-circle" %>
+              <% end %>
+            </td>
+            <td>
+              <i class="fa-regular fa-flag"></i>  <%= posts.spot_name %><br>
+              <i class="fa-regular fa-comment"></i> <%= posts.body %><br>
+              <i class="fa-regular fa-comments ml-3"></i> : <%= posts.post_comments.count %>
+              <i class="fa-regular fa-heart ml-4"></i> : <%= posts.favorites.count %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

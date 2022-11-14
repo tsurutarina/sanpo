@@ -25,8 +25,19 @@
           </li>
         <!--ログインしたら？-->
         <% elsif customer_signed_in? %>
-            <%=  link_to favorites_customer_path(current_customer.id), class: 'nav-link text-dark' do %>
-              いいね一覧
+          <li>
+            <%= link_to customer_followings_path(current_customer.id), class: "nav-link text-dark" do %>
+              フォロー
+            <% end %>
+          </li>
+          <li>
+            <%= link_to customer_followers_path(current_customer.id), class: "nav-link text-dark" do %>
+              フォロワー
+            <% end %>
+          </li>
+          <li>
+            <%= link_to favorites_customer_path(current_customer.id), class: 'nav-link text-dark' do %>
+              いいね
             <% end %>
           </li>
           <li>

@@ -10,10 +10,10 @@ class Customer < ApplicationRecord
   # ユーザーがどの投稿をいいねしてるのか取得
   has_many :favorited_posts, through: :favorites, source: :post
   # フォローした,された
-  has_many :relationships, class_name: "Ralationship", foreign_kye: "follower_id", dependent: :destroy
-  has_many :reverse_of_relationships, class_name: "Relationship", foreign_kye: "followed_id", dependent: :destroy
+  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   # フォローフォロワー一覧
-  has_many :followings, through: :relationships, source: :follwed
+  has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
   has_one_attached :profile_image

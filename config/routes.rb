@@ -39,8 +39,9 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    root to: "homes#top"
+    root to: "customers#index"
     resources :customers, only: [:show, :edit, :update]
+    # resources :post, onli: [:index, :show]
     resources :spots, only: [:index, :destroy]
   end
 

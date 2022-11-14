@@ -1,0 +1,61 @@
+<div class="row">
+
+  <div class="col-3 ml-3">
+    <table>
+      <tr><%= image_tag @customer.get_profile_image, size:'100x100', class: "rounded-circle" %></tr>
+      <tr>
+        <th>ユーザー：</th>
+        <th><%= @customer.nickname %></th>
+      </tr>
+      <tr>
+        <th>フォロー：</th>
+        <th><%= @customer.followings.count %></th>
+      </tr>
+      <tr>
+        <th>フォロワー：</th>
+        <th><%= @customer.followers.count %></th>
+      </tr>
+      <tr>
+        <th>いいねされた数：</th>
+        <th><%= @favorites_count %></th>
+      </tr>
+    </table>
+  <div class="side-info">
+    <%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-secondary col-9" %>
+  </div>
+  </div>
+
+  <div class="col-8">
+    <h5><%= @customer.nickname %> さんの投稿</h5>
+
+    <table class="table table-hover table-inverse">
+      <tbody>
+        <% @posts.each do |posts| %>
+        <tr>
+          <td>
+            <%= link_to post_path(posts.id) do %>
+              <% if posts.spot_image.attached? %>
+                <%= image_tag posts.spot_image, size: "100x100" %>
+              <% else %>
+                <%= image_tag 'spot', size: "100x100" %>
+              <% end %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to customer_path(posts.customer.id), class: 'nav-link text-dark' do %>
+              <%= image_tag posts.customer.get_profile_image, size:'70x70', class: "rounded-circle" %>
+            <% end %>
+          </td>
+          <td>
+            <i class="fa-regular fa-flag"></i>  <%= posts.spot_name %><br>
+            <i class="fa-regular fa-comment"></i> <%= posts.body %><br>
+            <i class="fa-regular fa-comments ml-3"></i> : <%= posts.post_comments.count %>
+            <i class="fa-regular fa-heart ml-4"></i> : <%= posts.favorites.count %>
+          </td>
+        </tr>
+        <% end %>
+       </tbody>
+    </table>
+
+  </div>
+</div>

@@ -23,7 +23,7 @@
   <div class="side-info">
     <%= render "public/relationships/btn", customer: customer %>
     <% if customer.email != "guest@example.com" %>
-      <%= link_to edit_customer_path(current_customer.id), class: "btn btn-outline-secondary col-9" do %>
+      <%= link_to edit_customer_path(current_customer.id), class: "btn btn-outline-secondary rounded-pill col-5" do %>
         <i class="fas fa-user-cog"></i>
       <% end %>
     <% end %>
