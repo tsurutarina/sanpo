@@ -48,12 +48,13 @@ class Public::CustomersController < ApplicationController
     end
     @customer.update(is_deleted: true)
     reset_session
-    redirect_to root_path, notice: "退会処理を実行しました"
+    redirect_to root_path, notice: "退会しました"
   end
 
   def favorites
-    @customer = Customer.find(params[:id])
-    favorites = Favorite.where(customer_id: @customer.id).pluck(:post_id)
+    @customers = Customer.active
+    @customers = @customers.find(params[:id])
+    favorites = Favorite.where(customer_id: @customers.id).pluck(:post_id)
     @favorite_posts = Post.find(favorites)
   end
 

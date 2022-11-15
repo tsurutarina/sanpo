@@ -1,13 +1,14 @@
 <div class="container">
   <div class="row">
-
-    <div class="col-8 offset-2">
+    <div class="col-10 offset-1">
+      <h4>投稿一覧</h4>
+      
       <table class="table table-hover table-inverse">
         <tbody>
           <% @posts.each do |posts| %>
           <tr>
             <td>
-              <%= link_to post_path(posts.id) do %>
+              <%= link_to admin_post_path(posts.id) do %>
                 <% if posts.spot_image.attached? %>
                   <%= image_tag posts.spot_image, size: "100x100" %>
                 <% else %>
@@ -16,7 +17,7 @@
               <% end %>
             </td>
             <td>
-              <%= link_to customer_path(posts.customer.id), class: 'nav-link text-dark' do %>
+              <%= link_to admin_customer_path(posts.customer.id), class: 'nav-link text-dark' do %>
                 <%= image_tag posts.customer.get_profile_image, size:'70x70', class: "rounded-circle" %>
               <% end %>
             </td>

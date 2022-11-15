@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-8 offset-2">
+    <div class="col-10 offset-1">
       <h4>会員一覧</h4>
 
       <table class="table table-hover table-inverse">
@@ -11,29 +11,32 @@
             <th>ユーザー名</th>
             <th>メールアドレス</th>
             <th>ステータス</th>
+            <th></th>
           </tr>
         </thaed>
         <tbody>
         <% @customers.each do |customer| %>
         <tr>
-          <th scope="row"><%= customer.id %></td>
-          <td class="col-1">
+          <th scope="row mt-3"><%= customer.id %></td>
+          <td>
             <%= link_to admin_customer_path(customer) do %>
-              <%= image_tag customer.get_profile_image, size:'70x70', class: "rounded-circle" %>
+              <%= image_tag customer.get_profile_image, size:'60x60', class: "rounded-circle" %>
             <% end %>
           </td>
           <td>
-            <%= link_to admin_customer_path(customer) do %>
+            <%= link_to admin_customer_path(customer), class: "text-dark" do %>
               <%= customer.nickname %>
             <% end %>
           </td>
           <td><%= customer.email %></td>
 
           <% if customer.is_deleted == "false" %>
-            <td>退会</td>
-          <% else customer.is_deleted == "true" %>
             <td>有効</td>
+          <% else customer.is_deleted == "true" %>
+            <td>退会</td>
           <% end %>
+
+          <td><%= link_to "編集する", edit_admin_customer_path(customer), class: "btn btn-outline-secondary rounded-pill" %></td>
         </tr>
         <% end %>
       </tbody>

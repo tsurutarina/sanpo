@@ -3,7 +3,8 @@ class Public::PostsController < ApplicationController
 
   def index
     @post = Post.new
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.active
+    @posts = @posts.all.order(created_at: :desc)
   end
 
   def show

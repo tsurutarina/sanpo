@@ -41,8 +41,8 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "customers#index"
     resources :customers, only: [:show, :edit, :update]
-    # resources :post, onli: [:index, :show]
-    resources :spots, only: [:index, :destroy]
+    resources :posts, only: [:index, :show, :destroy]
+    # patch "/admin/:id/withdrawal" => "admin#withdrawal", as: "withdrawal"
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -25,10 +25,16 @@ class Admin::CustomersController < ApplicationController
     if @customer.update(customer_params)
       redirect_to admin_customer_path(@customer), notice: "ユーザー情報を編集しました"
     else
-      @customer = Customer.find(params[:id])
-      render edit
+      render :edit
     end
   end
+
+  # def withdrawal
+  #   @customer = Customer.find(params[:id])
+  #   @customer.update(is_deleted: true)
+  #   reset_session
+  #   redirect_to admin_root_path, notice: "退会処理を実行しました"
+  # end
 
   private
   def customer_params
