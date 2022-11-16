@@ -39,16 +39,8 @@
           </td>
         </tr>
         <tr>
-          <td>
-            <% if @post.favorited_by?(current_customer) %>
-              <%= link_to post_favorites_path(@post), class: "text-danger", method: :delete do %>
-                <i class="fa-solid fa-heart ml-4"></i> <%= @post.favorites.count %>
-              <% end %>
-            <% else %>
-              <%= link_to post_favorites_path(@post), class: "text-dark", method: :post do %>
-                <i class="fa-regular fa-heart ml-3"></i> <%= @post.favorites.count %>
-              <% end %>
-            <% end %>
+          <td id="favorite_btn_<%= @post.id %>">
+            <%= render 'public/favorites/btn', post: @post %>
           </td>
         </tr>
       </tbody>
