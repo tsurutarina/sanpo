@@ -12,13 +12,9 @@
       </td>
       <td>
         <div class="mt-3">
-          <%= render "public/relationships/btn", customer: customer %>
-        </div>
-      </td>
-      <td>
-        <div class="mt-3">
-          <i class="fa-solid fa-user-plus"></i> : <%= customer.followings.count %>
-          <i class="fa-solid fa-users ml-4"></i> : <%= customer.followers.count %>
+          <div id="relationship_btn_<%= customer.id %>">
+            <%= render "public/relationships/btn", customer: customer %>
+          </div>
         </div>
       </td>
     </tr>

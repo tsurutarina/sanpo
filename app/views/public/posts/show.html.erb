@@ -47,24 +47,11 @@
     </table>
 
     <div class="offset-1">
-      <p>コメント数 : <%= @post.post_comments.count %></p>
-       <% @post.post_comments.each do |post_comment| %>
-       <table class="table table-borderless">
-         <tr  class="shadow-sm bg-light">
-          <td class="col-1">
-            <%= link_to customer_path(post_comment.customer.id), class: "text-dark" do %>
-              <%= image_tag post_comment.customer.get_profile_image, size:'45x45', class: "rounded-circle" %>
-            <% end %>
-          </td>
-          <td>
-            <i class="fa-solid fa-user"></i> <%= post_comment.customer.nickname %><br>
-            <p><i class="fa-regular fa-comments"></i> <%= post_comment.comment %></p>
-          </td>
-        </tr>
-      </table>
-      <% end %>
+      <div id="post_comment_<%= @post.id %>">
+        <%= render 'public/post_comments/index', post: @post %>
+      </div>
 
-      <%= form_with model: [@post, @comment] do |f| %>
+      <%= form_with model: [@post, @comment], local: false do |f| %>
       <div class="form-group">
         <%= f.label :comment, "コメント" %><br>
         <%= f.text_area :comment, class:"col-9", placeholder: "思いを伝えよう！" %><br>
