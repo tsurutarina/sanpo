@@ -18,6 +18,8 @@ class Customer < ApplicationRecord
 
   has_one_attached :profile_image
 
+  validates :nickname, length: { minimum: 2, maximum: 10 }
+
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'user.jpg'
   end

@@ -1,5 +1,5 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_customer!, only: [:show]
+  before_action :authenticate_customer!, only: [:show, :create, :destroy]
 
   def index
     @post = Post.new
@@ -28,14 +28,10 @@ class Public::PostsController < ApplicationController
     redirect_to root_path, notice: "削除しました"
   end
 
-  # def favorites
-  #   @customer = Customer.find(params[:id])
-  #   favorites = Favorite.where(customer_id: @customer.id).pluck(:post_id)
-  #   @favorite_posts = Post.find(favorites)
-  # end
-
   private
+
   def post_params
     params.require(:post).permit(:spot_image, :address_spot, :spot_name, :body)
   end
+
 end

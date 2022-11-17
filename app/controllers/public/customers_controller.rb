@@ -1,6 +1,5 @@
 class Public::CustomersController < ApplicationController
-  before_action :ensure_guest_customer, only: [:edit, :unsubscribe, :withdrawal]
-  
+  before_action :ensure_guest_customer
 
   def show
     @customer = Customer.find(params[:id])
@@ -36,9 +35,9 @@ class Public::CustomersController < ApplicationController
 
   def destroy
     @customer = Customer.find(params[:id])
-    # unless @customer == current_customer
-    #   redirect_to customer_path(current_customer.id)
-    # end
+    unless @customer == current_customer
+      redirect_to customer_path(current_customer.id)
+    end
     if @customer.destroy
       redirect_to root_path, notice: "ユーザーを削除しました"
     else

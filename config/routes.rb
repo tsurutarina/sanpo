@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    # root to: "homes#top"
     root to: "posts#index"
     get "/about" => "homes#about", as: 'about'
     resources :customers, only: [:show, :edit, :update, :destroy] do
@@ -31,17 +30,12 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
     end
     get "search" => "searches#search"
-    # 退会確認
-    # get "/customers/:id/unsubscribe" => "customers#unsubscribe", as: "unsubscribe"
-    # 倫理削除
-    # patch "/customers/:id/withdrawal" => "customers#withdrawal", as: "withdrawal"
   end
 
   namespace :admin do
     root to: "customers#index"
     resources :customers, only: [:show, :edit, :update, :destroy]
     resources :posts, only: [:index, :show, :destroy]
-    # patch "/admin/:id/withdrawal" => "admin#withdrawal", as: "withdrawal"
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -6,6 +6,10 @@ class Post < ApplicationRecord
   # 投稿がだれにいいねされているか取得
   has_many :favorited_customers, through: :favorites, source: :customer
 
+  validates :address_spot, presence: true
+  validates :spot_name, presence: true
+  validates :body, presence: true, length: {maximum:200}
+
   has_one_attached :spot_image
 
   def get_spot_image
