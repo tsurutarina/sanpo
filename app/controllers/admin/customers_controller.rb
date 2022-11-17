@@ -29,6 +29,16 @@ class Admin::CustomersController < ApplicationController
     end
   end
 
+  def destroy
+    @customer = Customer.find(params[:id])
+    if @customer.destroy
+      redirect_to adminroot_path, notice: "ユーザーを削除しました"
+    else
+      @customer = Customer.find(params[:id])
+      render edit, notice: "ユーザーの削除ができませんでした"
+    end
+  end
+
   # def withdrawal
   #   @customer = Customer.find(params[:id])
   #   @customer.update(is_deleted: true)

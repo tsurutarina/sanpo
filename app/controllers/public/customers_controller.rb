@@ -1,6 +1,6 @@
 class Public::CustomersController < ApplicationController
   before_action :ensure_guest_customer, only: [:edit, :unsubscribe, :withdrawal]
-  # before_action :set_customer, only: [:favorites]
+  
 
   def show
     @customer = Customer.find(params[:id])
@@ -34,21 +34,17 @@ class Public::CustomersController < ApplicationController
     end
   end
 
-  def unsubscribe
+  def destroy
     @customer = Customer.find(params[:id])
-    unless @customer == current_customer
-      redirect_to customer_path(current_customer.id)
+    # unless @customer == current_customer
+    #   redirect_to customer_path(current_customer.id)
+    # end
+    if @customer.destroy
+      redirect_to root_path, notice: "ユーザーを削除しました"
+    else
+      @customer = Customer.find(params[:id])
+      render edit
     end
-  end
-
-  def withdrawal
-    @customer = Customer.find(params[:id])
-    unless @customer == current_customer
-      redirect_to customer_path(current_customer.id)
-    end
-    @customer.update(is_deleted: true)
-    reset_session
-    redirect_to root_path, notice: "退会しました"
   end
 
   def favorites
@@ -59,10 +55,6 @@ class Public::CustomersController < ApplicationController
   end
 
   private
-
-  # def set_customer
-  #   @customer = Customer.find(params[:id])
-  # end
 
   def ensure_guest_customer
     @customer = Customer.find(params[:id])

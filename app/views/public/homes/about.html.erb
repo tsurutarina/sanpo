@@ -1,0 +1,143 @@
+<div class="container">
+  <div class="row">
+    <%= image_tag'log.jpg', class: "mx-auto d-block w-25 rounded-circle" %>
+  </div>
+
+  <h1 class="text-center mt-4">About us</h1>
+  <p class="text-center">
+    「都心から一番近い森のまち」のキャッチフレーズで若い世代に人気の流山市<br>
+    人口増加に伴ってたくさんのお店や施設も増えています<br>
+    活気ある地元をより盛り上げたい気持ちから Sanpo@Nagareyama は作られました！
+  </p>
+
+  <div class="row mt-5">
+    <div class="card-deck">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">投稿を見る</h3>
+          <p class="card-text">会員登録せずにみんなの投稿を閲覧することができます<br>お気に入りのスポットを探してみましょう</p>
+          <%= link_to "投稿一覧", root_path, class: "btn", style: "background-color: #F172A3; color: #fff;" %>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">ログイン</h3>
+          <p class="card-text">ログインすることで投稿やブックマークができるようになります<br>おすすめスポットをみんなにも共有してみましょう</p>
+          <%= link_to "ログイン", new_customer_session_path, class: "btn", style: "background-color: #00A4AC; color: #fff;" %>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">新規会員登録</h3>
+          <p class="card-text">初めての方はこちらから会員登録してください<br>素敵な投稿を見つけたらブックマークしてみましょう</p>
+          <%= link_to "新規登録", new_customer_registration_path, class: "btn", style: "background-color: #00B379; color:#fff;" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-deck mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">最新画像を見る</h3>
+        <p class="card-text">最新の投稿画像3件がお手軽に閲覧できます<br>確認してみましょう</p>
+        <div class="btn", style="background-color: #ba55d3;"><a class="text-light" href="#verse1">最新投稿</a></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">マップで調べる</h3>
+        <p class="card-text">気になるスポットがどこにあるか調べてみましょう<br>新しい発見があるかもしれません</p>
+        <div class="btn", style="background-color: #ff8c00;"><a class="text-light" href="#verse2">流山マップ</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div data-spy="scroll" data-target="#navbar-example2" data-offset="0" class="scrollspy-example">
+    <div class="row my-5">
+      <h4 id="verse1"><i class="fa-regular fa-images"></i> 最新投稿</h4>
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        </ol>
+
+        <div class="carousel-inner" role="listbox">
+        <!--each文で最新三件くらい表示したい-->
+          <div class="carousel-item active">
+            <%= image_tag'DSC_0063 (2).JPG', class: "mx-auto d-block w-100" %>
+          </div>
+          <div class="carousel-item">
+            <%= image_tag'DSC_0032.JPG', class: "mx-auto d-block w-100" %>
+          </div>
+        </div>
+
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+
+  <!--地図-->
+    <div class="row">
+      <div class="col offset-1">
+        <h4 id="verse2"><i class="fa-solid fa-map-location-dot"></i> 流山マップ</h4>
+      <div class="spot-search">
+        <input id="address" type="textbox" value="流山市役所">
+        <input type="button" value="調べる" onclick="codeAddress()">
+      </div>
+
+      <div id="display"></div>
+      <div id='map' style="height: 600px; width: 90%;"></div>
+      </div>
+    </div>
+  </div>
+  <!--イベントごとの動き-->
+　<script>
+　  let map
+　  let geocoder
+　　const display = document.getElementById('display')
+　　// 地図表示するとき
+    function initMap(){
+      geocoder = new google.maps.Geocoder()
+      // デフォルト表示、マーカー
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 35.8716, lng:139.9249},
+        zoom: 15,
+      });
+      marker = new google.maps.Marker({
+        position:  {lat: 35.8714245, lng:139.9254028},
+        map: map
+      });
+    }
+
+    // 検索ボタン押されたら実行
+    function codeAddress(){
+      // 入力取得
+      let inputAddress = document.getElementById('address').value;
+      geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+        // 検索ヒット時、緯度経度更新
+        if (status == 'OK') {
+          // 新しくマーカー作成
+          map.setCenter(results[0].geometry.location);
+          var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+          });
+          display.textContent = "検索結果：" + results[ 0 ].geometry.location
+        } else {
+          alert('該当する結果がありませんでした：' + status);
+        }
+      });
+    }
+
+  </script>
+
+　<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
+
+</div>

@@ -1,6 +1,6 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light p-3" style="background-color: #e3f2fd;">
-      <a class="navbar-brand" href="/"><span>流山＠さんぽ</span></a>
+  <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #e3f2fd;">
+      <a class="navbar-brand" href="/"><%= image_tag"picwish.png",size:"160x80" %></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -47,11 +47,6 @@
           </li>
           <li>
             <%= render "public/searches/form" %>
-          </li>
-          <li>
-            <%= link_to customer_path(current_customer.id), class: 'nav-link text-dark' do %>
-              <%= image_tag current_customer.get_profile_image, size:'50x50', class: "rounded-circle" %>
-            <% end %>
           </li>
           <!--未ログイン-->
         <% else %>

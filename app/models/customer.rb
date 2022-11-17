@@ -3,10 +3,8 @@ class Customer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
-  scope :active, -> { where(is_deleted: false) }
 
-  has_many :posts, :dependent => :destroy
+  has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   # ユーザーがどの投稿をいいねしてるのか取得

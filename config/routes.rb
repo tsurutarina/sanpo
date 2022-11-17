@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     # root to: "homes#top"
     root to: "posts#index"
     get "/about" => "homes#about", as: 'about'
-    resources :customers, only: [:show, :edit, :update] do
+    resources :customers, only: [:show, :edit, :update, :destroy] do
       resource :relationships, only: [:create, :destroy]
       get "followings" => "relationships#followings", as: "followings"
       get "followers" => "relationships#followers", as: "followers"
@@ -30,17 +30,16 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
-    # resources :favorites, only: [:index]
     get "search" => "searches#search"
     # 退会確認
-    get "/customers/:id/unsubscribe" => "customers#unsubscribe", as: "unsubscribe"
+    # get "/customers/:id/unsubscribe" => "customers#unsubscribe", as: "unsubscribe"
     # 倫理削除
-    patch "/customers/:id/withdrawal" => "customers#withdrawal", as: "withdrawal"
+    # patch "/customers/:id/withdrawal" => "customers#withdrawal", as: "withdrawal"
   end
 
   namespace :admin do
     root to: "customers#index"
-    resources :customers, only: [:show, :edit, :update]
+    resources :customers, only: [:show, :edit, :update, :destroy]
     resources :posts, only: [:index, :show, :destroy]
     # patch "/admin/:id/withdrawal" => "admin#withdrawal", as: "withdrawal"
   end

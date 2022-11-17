@@ -13,6 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+h1, h3, h4 {
+  font-family: "ＭＳ Ｐゴシック", sans-serif;
+}
+
 .sidebar{
   position: fixed;
   top: 0px;
@@ -24,3 +29,4 @@
   /* 縦方向のスクロールバーを表示 */
   overflow-y: scroll;
 }
+

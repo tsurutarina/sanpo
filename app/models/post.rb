@@ -1,7 +1,5 @@
 class Post < ApplicationRecord
   belongs_to :customer
-  # customer退会したら表示させない
-  scope :active, -> { joins(:customer).where('customer.is_deleted': false) }
 
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy

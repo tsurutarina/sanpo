@@ -10,7 +10,6 @@
             <th>アイコン</th>
             <th>ユーザー名</th>
             <th>メールアドレス</th>
-            <th>ステータス</th>
             <th></th>
           </tr>
         </thaed>
@@ -29,13 +28,6 @@
             <% end %>
           </td>
           <td><%= customer.email %></td>
-
-          <% if customer.is_deleted == "false" %>
-            <td>有効</td>
-          <% else customer.is_deleted == "true" %>
-            <td>退会</td>
-          <% end %>
-
           <td><%= link_to "編集する", edit_admin_customer_path(customer), class: "btn btn-outline-secondary rounded-pill" %></td>
         </tr>
         <% end %>
