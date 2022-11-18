@@ -1,5 +1,7 @@
 class Public::CustomersController < ApplicationController
-  before_action :ensure_guest_customer
+  before_action :authenticate_customer!
+  before_action :ensure_correct_customer, only: [:edit, :update, :destroy]
+  before_action :ensure_guest_customer, only: [:edit]
 
   def show
     @customer = Customer.find(params[:id])
@@ -15,16 +17,10 @@ class Public::CustomersController < ApplicationController
 
   def edit
     @customer = Customer.find(params[:id])
-    unless @customer == current_customer
-      redirect_to customer_path(current_customer.id)
-    end
   end
 
   def update
     @customer = Customer.find(params[:id])
-    unless @customer == current_customer
-      redirect_to customer_path(current_customer.id)
-    end
     if @customer.update(customer_params)
       redirect_to customer_path(current_customer.id), notice: "ユーザー情報を編集しました"
     else
@@ -35,9 +31,6 @@ class Public::CustomersController < ApplicationController
 
   def destroy
     @customer = Customer.find(params[:id])
-    unless @customer == current_customer
-      redirect_to customer_path(current_customer.id)
-    end
     if @customer.destroy
       redirect_to root_path, notice: "ユーザーを削除しました"
     else
@@ -47,18 +40,23 @@ class Public::CustomersController < ApplicationController
   end
 
   def favorites
-    @customers = Customer.active
-    @customers = @customers.find(params[:id])
+    @customers = Customer.find(params[:id])
     favorites = Favorite.where(customer_id: @customers.id).pluck(:post_id)
     @favorite_posts = Post.find(favorites)
   end
 
   private
+  def ensure_correct_customer
+    @customer = Customer.find(params[:id])
+    unless @customer == current_customer
+      redirect_to customer_path(current_customer.id)
+    end
+  end
 
   def ensure_guest_customer
     @customer = Customer.find(params[:id])
     if @customer.email == "guest@example.com"
-      redirect_to customer_path(current_customer.id), notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+      redirect_to customer_path(current_customer.id), notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません'
     end
   end
 

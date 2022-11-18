@@ -1,5 +1,6 @@
 class Public::PostCommentsController < ApplicationController
   before_action :authenticate_customer!
+  before_action :ensure_correct_customer, only: [:destroy]
 
   def create
     @post = Post.find(params[:post_id])
@@ -18,6 +19,14 @@ class Public::PostCommentsController < ApplicationController
   end
 
   private
+
+  def ensure_correct_customer
+    @comment = PostComment.find(params[:id])
+    unless @comment.customer == current_customer
+      redirect_to customer_path(current_customer.id)
+    end
+  end
+
   def post_comment_params
     params.require(:post_comment).permit(:comment)
   end

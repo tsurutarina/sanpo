@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_customer!, only: [:show, :create, :destroy]
+  before_action :ensure_correct_customer, only: [:destroy]
 
   def index
     @post = Post.new
@@ -29,6 +30,13 @@ class Public::PostsController < ApplicationController
   end
 
   private
+
+  def ensure_correct_customer
+    @post = Post.find(params[:id])
+    unless @post.customer == current_customer
+      redirect_to root_path
+    end
+  end
 
   def post_params
     params.require(:post).permit(:spot_image, :address_spot, :spot_name, :body)

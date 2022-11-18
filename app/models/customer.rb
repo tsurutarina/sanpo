@@ -40,11 +40,6 @@ class Customer < ApplicationRecord
     followings.include?(customer)
   end
 
-  # 退会済みユーザーが同じアカウントでログインできないように
-  def active_for_authentication?
-    super && (is_deleted == false)
-  end
-
   def self.guest
     find_or_create_by!(nickname: 'ゲストユーザー' ,email: 'guest@example.com') do |customer|
       customer.password = SecureRandom.urlsafe_base64

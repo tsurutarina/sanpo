@@ -12,9 +12,11 @@
       </td>
       <td>
         <div class="mt-3">
-          <div id="relationship_btn_<%= customer.id %>">
-            <%= render "public/relationships/btn", customer: customer %>
-          </div>
+          <% if customer_signed_in? %>
+            <div id="relationship_btn_<%= customer.id %>">
+              <%= render "public/relationships/btn", customer: customer %>
+            </div>
+          <% end %>
         </div>
       </td>
     </tr>
