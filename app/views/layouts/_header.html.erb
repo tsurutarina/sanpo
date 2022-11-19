@@ -1,81 +1,114 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #e3f2fd;">
-      <a class="navbar-brand" href="/"><%= image_tag"picwish.png",size:"160x80" %></a>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f5f5f5;">
+      <a class="navbar-brand" href="/"><%= image_tag"picwish.png",size: "160x80" %></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-4">
         <!--管理者ログインしたら？-->
-        <% if  admin_signed_in? %>
+        <% if admin_signed_in? %>
           <li>
-            <%= link_to admin_root_path, class: 'nav-link text-dark' do %>
+            <%= link_to admin_root_path, class: "nav-link text-dark text-center" do %>
+              <i class="fa-regular fa-address-book fa-2x"></i><br>
               会員一覧
             <% end %>
           </li>
           <li>
-            <%=  link_to admin_posts_path, class: 'nav-link text-dark' do %>
+            <%=  link_to admin_posts_path, class: "nav-link text-dark text-center" do %>
+              <i class="fa-regular fa-file-lines fa-2x"></i><br>
               投稿一覧
-            <% end %>
-          </li>
-          <li>
-            <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' do %>
-              ログアウト
             <% end %>
           </li>
         <!--ログインしたら？-->
         <% elsif customer_signed_in? %>
+        <li>
+            <%= link_to customer_path(current_customer.id), class: "nav-link text-dark text-center" do %>
+              <i class="fa-regular fa-circle-user fa-2x"></i><br>
+              マイページ
+            <% end %>
+          </li>
           <li>
-            <%= link_to customer_followings_path(current_customer.id), class: "nav-link text-dark" do %>
+            <%= link_to customer_followings_path(current_customer.id), class: "nav-link text-dark text-center" do %>
+              <i class="fa-solid fa-user-tag fa-2x"></i><br>
               フォロー
             <% end %>
           </li>
           <li>
-            <%= link_to customer_followers_path(current_customer.id), class: "nav-link text-dark" do %>
+            <%= link_to customer_followers_path(current_customer.id), class: "nav-link text-dark text-center" do %>
+              <i class="fa-solid fa-users fa-2x"></i><br>
               フォロワー
             <% end %>
           </li>
           <li>
-            <%= link_to favorites_customer_path(current_customer.id), class: 'nav-link text-dark' do %>
+            <%= link_to favorites_customer_path(current_customer.id), class: "nav-link text-dark text-center" do %>
+              <i class="fa-regular fa-heart fa-2x"></i><br>
               いいね
             <% end %>
           </li>
           <li>
-            <%= link_to destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' do %>
-              ログアウト
+            <%= link_to new_post_path, class: "nav-link text-dark text-center" do %>
+              <i class="fa-regular fa-pen-to-square fa-2x"></i><br>
+              投稿する
             <% end %>
-          </li>
-          <li>
-            <%= render "public/searches/form" %>
           </li>
           <!--未ログイン-->
         <% else %>
           <li>
-            <%= link_to about_path, class: 'nav-link text-dark' do %>
+            <%= link_to about_path, class: "nav-link text-dark text-center" do %>
+              <i class="fa-solid fa-link fa-2x"></i><br>
               About
             <% end %>
           </li>
           <li>
-            <%= link_to new_customer_registration_path, class: 'nav-link text-dark' do %>
+            <%= link_to new_customer_registration_path, class: "nav-link text-dark text-center ml-3" do %>
+              <i class="fa-solid fa-user-plus fa-2x"></i><br>
               新規登録
             <% end %>
           </li>
           <li>
-            <%= link_to new_customer_session_path, class: 'nav-link text-dark' do %>
+            <%= link_to new_customer_session_path, class: "nav-link text-dark text-center" do %>
+              <i class="fa-solid fa-right-to-bracket fa-2x"></i><br>
                ログイン
             <% end %>
           </li>
           <li>
             <!--できない-->
-            <%= link_to public_guest_sign_in_path, method: :post, class: 'nav-link text-dark' do %>
+            <%= link_to public_guest_sign_in_path, method: :post, class: "nav-link text-dark text-center" do %>
+              <i class="fa-solid fa-user-group fa-2x"></i><br>
               ゲストログイン
             <% end %>
           </li>
+        <% end %>
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+        <% if admin_signed_in? %>
+          <!--管理者-->
           <li>
+            <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link text-dark text-center" do %>
+              <i class="fa-solid fa-right-from-bracket fa-2x"></i><br>
+              ログアウト
+            <% end %>
+          </li>
+        <% elsif customer_signed_in? %>
+          <li class="navbar-nav ml-auto mt-3">
+            <%= render "public/searches/form" %>
+          </li>
+          <!--ユーザー-->
+          <li class="navbar-nav ml-auto">
+            <%= link_to destroy_customer_session_path, method: :delete, class: "nav-link text-dark text-center" do %>
+              <i class="fa-solid fa-right-from-bracket fa-2x"></i><br>
+                ログアウト
+            <% end %>
+          </li>
+        <% else %>
+          <li class="mt-3">
             <%= render "public/searches/form" %>
           </li>
         <% end %>
         </ul>
+
       </div>
   </nav>
 </header>

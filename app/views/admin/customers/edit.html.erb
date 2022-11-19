@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-8 offset-2">
+    <div class="col-sm-8 offset-sm-2">
     <h4>ユーザー情報編集</h4>
       <% if @customer.errors.any? %>
         <div class="alert alert-warning">
@@ -14,26 +14,21 @@
 
   <%= form_with model: @customer, url: admin_customer_path, local:true do |f| %>
     <div class="form-group mt-5">
-      <%= f.label :profile_image, "アイコン", class: "col-3" %>
-      <%= f.file_field :profile_image, class: "offset-1", accept: "image/*" %>
+      <%= f.label :profile_image, "アイコン", class: "col-sm-3" %>
+      <%= f.file_field :profile_image, class: "offset-sm-1", accept: "image/*" %>
     </div>
     <div class="form-group">
-      <%= f.label :nickname, "ユーザー名", class: "col-3" %>
-      <%= f.text_field :nickname, class: "col-md-5 offset-1" %>
+      <%= f.label :nickname, "ユーザー名", class: "col-sm-3" %>
+      <%= f.text_field :nickname, class: "col-sm-5 offset-sm-1" %>
     </div>
     <div class="form-group">
-      <%= f.label :email, "メールアドレス", class: "col-3" %>
-      <%= f.text_field :email, class: "col-md-5 offset-1" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :is_deleted, "ステータス", class: "col-4" %>
-      <label><%= f.radio_button :is_deleted?, "false", checked: "false" %>有効</label>
-      <label class="ml-3"><%= f.radio_button :is_deleted, "true" %>退会</label>
+      <%= f.label :email, "メールアドレス", class: "col-sm-3" %>
+      <%= f.text_field :email, class: "col-md-5 offset-sm-1" %>
     </div>
 
     <div class="form-group">
-      <%= f.submit "編集内容を保存", class: "btn btn-outline-primary offset-5 mt-4" %>
-      <%= link_to "退会", admin_customer_path(@customer), method: :delete, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-danger col-2 offset-1 mt-4" %>
+      <%= f.submit "編集内容を保存", class: "btn btn-outline-primary offset-sm-5 mt-4" %>
+      <%= link_to "退会", admin_customer_path(@customer), method: :delete, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-danger offset-1 mt-4" %>
     </div>
   <% end %>
     </div>

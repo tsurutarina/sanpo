@@ -39,9 +39,9 @@
   <div class="card-deck mt-5">
     <div class="card">
       <div class="card-body">
-        <h3 class="card-title">最新画像を見る</h3>
-        <p class="card-text">最新の投稿画像3件がお手軽に閲覧できます<br>確認してみましょう</p>
-        <div class="btn", style="background-color: #ba55d3;"><a class="text-light" href="#verse1">最新投稿</a></div>
+        <h3 class="card-title">流山フォト</h3>
+        <p class="card-text">流山市の魅力が詰まった写真です<br>ぜひ確認してみてください</p>
+        <div class="btn", style="background-color: #ba55d3;"><a class="text-light" href="#verse1">フォトビュー</a></div>
       </div>
     </div>
     <div class="card">
@@ -55,20 +55,23 @@
 
   <div data-spy="scroll" data-target="#navbar-example2" data-offset="0" class="scrollspy-example">
     <div class="row my-5">
-      <h4 id="verse1"><i class="fa-regular fa-images"></i> 最新投稿</h4>
+      <h4 id="verse1"><i class="fa-regular fa-images"></i> フォトビュー</h4>
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
 
         <div class="carousel-inner" role="listbox">
-        <!--each文で最新三件くらい表示したい-->
           <div class="carousel-item active">
             <%= image_tag'DSC_0063 (2).JPG', class: "mx-auto d-block w-100" %>
           </div>
           <div class="carousel-item">
             <%= image_tag'DSC_0032.JPG', class: "mx-auto d-block w-100" %>
+          </div>
+          <div class="carousel-item">
+            <%= image_tag'picwish.png', class: "mx-auto d-block w-100" %>
           </div>
         </div>
 

@@ -1,17 +1,17 @@
 <div class="container">
   <div class="row">
-    <div class="col-8 offset-2">
+    <div class="col-sm-8 offset-sm-2">
 
       <% if @post.spot_image.attached? %>
-        <%= image_tag @post.spot_image, class: "w-50 rounded" %>
+        <%= image_tag @post.spot_image, class: "w-75 rounded" %>
       <% else %>
-        <%= image_tag 'spot', class: "w-50 rounded" %>
+        <%= image_tag 'spot', class: "w-75 rounded" %>
       <% end %>
 
       <table class="table table-borderless">
         <tbody>
           <tr>
-            <td class="col-1">
+            <td class="col-sm-1">
               <%= link_to admin_customer_path(@post.customer.id), class: "text-dark" do %>
                 <%= image_tag @post.customer.get_profile_image, size:'70x70', class: "rounded-circle" %>
               <% end %>

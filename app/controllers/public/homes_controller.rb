@@ -1,9 +1,6 @@
 class Public::HomesController < ApplicationController
-  # 地図
-  def create
-    @spot =Spot.new(spot_params)
-    if @spot.save
-      redirect_to root_path, notice: "スポットを追加しました"
-    end
+
+  def about
+    @posts = Post.order(created_at: :desc).limit(3)
   end
 end

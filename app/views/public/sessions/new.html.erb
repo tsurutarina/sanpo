@@ -1,37 +1,36 @@
 <div class="container mt-3">
   <div class="row">
-    <div class="col-1"></div>
-    <div class="col-8">
+    <div class="col-sm-10 offset-1">
 
     <h5>ログイン</h5>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field mt-4">
-        <%= f.label :email, "メールアドレス", class: "col-3" %>
-        <%= f.email_field :email, class:"col-md-5", placeholder:"sample@example.com",autofocus: true, autocomplete: "email" %>
+        <%= f.label :email, "メールアドレス", class: "col-sm-3" %>
+        <%= f.email_field :email, class:"col-8 col-lg-5", placeholder:"sample@example.com",autofocus: true, autocomplete: "email" %>
       </div>
 
       <div class="field">
-        <%= f.label :password, "パスワード", class: "col-3" %>
-        <%= f.password_field :password, class:"col-md-3", autocomplete: "current-password" %>
+        <%= f.label :password, "パスワード", class: "col-sm-3" %>
+        <%= f.password_field :password, class:"col-5 col-lg-3", autocomplete: "current-password" %>
       </div>
 
       <div class="field-action mt-3">
-        <%= f.submit "ログイン", class: 'btn btn-outline-primary col-md-3 offset-md-4' %>
+        <%= f.submit "ログイン", class: "btn btn-outline-primary col-3 offset-sm-4" %>
       </div>
     <% end %>
     </div>
   </div>
 
   <div class="row mt-4">
-    <div class="col-md-4 offset-8">
+    <div class="col-sm-4 offset-sm-8">
       <h5>会員登録がお済でない方</h5>
       <%= link_to "こちら", new_customer_registration_path %> から新規登録してください。
     </div>
   </div>
   <div class="row mt-5">
     <div class="col">
-      <%= link_to "管理者ログイン", new_admin_session_path, class: 'btn btn-outline-secondary col-md-3 offset-8' %>
+      <%= link_to "管理者ログイン", new_admin_session_path, class: "btn btn-outline-secondary col-4 offset-8" %>
     </div>
   </div>
 </div>

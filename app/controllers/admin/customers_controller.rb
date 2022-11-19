@@ -1,5 +1,6 @@
 class Admin::CustomersController < ApplicationController
   before_action :authenticate_admin!
+  before_action :ensure_guest_customer, only: [:edit]
 
   def index
     @customers = Customer.all
@@ -41,6 +42,14 @@ class Admin::CustomersController < ApplicationController
 
 
   private
+
+  def ensure_guest_customer
+    @customer = Customer.find(params[:id])
+    if @customer.email == "guest@example.com"
+      redirect_to admin_customer_path(@customer), notice: 'ゲストユーザーはプロフィール編集できません'
+    end
+  end
+
   def customer_params
     params.require(:customer).permit(:nickname, :profile_image)
   end

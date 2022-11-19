@@ -1,5 +1,9 @@
 <table>
-  <tr><%= image_tag customer.get_profile_image, size:'100x100', class: "rounded-circle" %></tr>
+  <tr>
+    <%= link_to customer_path(current_customer.id) do %>
+      <%= image_tag current_customer.get_profile_image, size:'90x90', class: "rounded-circle" %>
+    <% end %>
+    </tr>
   <tr>
     <th>ユーザー：</th>
     <th><%= customer.nickname %></th>
@@ -23,33 +27,19 @@
   </tr>
   </tr>
 </table>
+
 <% if customer_signed_in? %>
   <div class="side-info">
     <div id="relationship_btn_<%= customer.id %>">
       <%= render "public/relationships/btn", customer: customer %>
     </div>
+    
     <% if customer.email != "guest@example.com" %>
+    <% if customer == current_customer %>
       <%= link_to edit_customer_path(current_customer.id), class: "btn btn-outline-secondary rounded-pill col-5" do %>
         <i class="fas fa-user-cog"></i>
       <% end %>
     <% end %>
+    <% end %>
   </div>
-
-  <%= form_with model: post, url: posts_path do |f| %>
-    <div class="form-group mt-4">
-      <%= f.label :spot_image, "画像" %><br>
-      <%= f.file_field :spot_image, accept: "image/*" %><br>
-
-      <%= f.label :address, "住所" %><br>
-      <%= f.text_field :address, class:"col-9", placeholder: "千葉県流山市おおたかの森東1-1-1" %><br>
-
-      <%= f.label :spot_name, "スポット" %><br>
-      <%= f.text_field :spot_name, class:"col-9", placeholder: "流山市おおたかの森駅" %><br>
-
-      <%= f.label :body, "本文" %><br>
-      <%= f.text_area :body, class:"col-10", placeholder: "みんなに共有しよう！" %><br>
-
-      <%= f.submit "投稿", class: "btn btn-outline-success offset-8 rounded-pill" %>
-    </div>
-  <% end %>
 <% end %>

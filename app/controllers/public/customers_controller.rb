@@ -24,8 +24,7 @@ class Public::CustomersController < ApplicationController
     if @customer.update(customer_params)
       redirect_to customer_path(current_customer.id), notice: "ユーザー情報を編集しました"
     else
-      @customer = Customer.find(params[:id])
-      render edit
+      render :edit
     end
   end
 

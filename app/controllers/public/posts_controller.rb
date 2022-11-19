@@ -13,13 +13,17 @@ class Public::PostsController < ApplicationController
     @comment = PostComment.new
   end
 
+  def new
+    @post = Post.new
+  end
+
   def create
     @post = Post.new(post_params)
     @post.customer_id = current_customer.id
     if @post.save
       redirect_to root_path, notice: "投稿しました"
     else
-      redirect_to root_path, notice: "投稿できませんでした"
+      render :new
     end
   end
 
