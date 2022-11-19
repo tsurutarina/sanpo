@@ -1,18 +1,14 @@
-<div class="row">
+<div class="container">
+  <div class="row">
 
-  <div class="col-3 ml-3">
-    <% if customer_signed_in? %>
-      <%= render "public/customers/side-info-post", post: @post %>
-    <% end %>
-  </div>
-
-  <div class="col-8">
-    <h5>フォロワー</h5>
-    <% if @customers.exists? %>
-      <%= render "public/customers/index", customers: @customers %>
-    <% else %>
-      <p>ユーザーはいません</p>
-    <% end %>
-  </div>
+    <div class="col">
+      <h5>フォロワー</h5>
+      <% if @customers.exists? %>
+        <%= render "public/customers/index", customers: @customers %>
+      <% else %>
+        <p>ユーザーはいません</p>
+      <% end %>
+    </div>
 
   </div>
+</div>

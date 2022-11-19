@@ -1,15 +1,47 @@
 <div class="container">
   <div class="row">
 
-  <div class="col-sm-3 ml-3">
+    <div class="col-sm-3 my-3">
     <% if customer_signed_in? %>
-      <%= render "public/customers/side-info-post", post: @post, favorites_count: @favorites_count %>
-    <% end %>
-  </div>
+      <table>
+        <tr>
+          <%= link_to customer_path(current_customer.id) do %>
+            <%= image_tag current_customer.get_profile_image, size:'90x90', class: "rounded-circle" %>
+          <% end %>
+        </tr>
+        <tr>
+          <th>ユーザー：</th>
+          <th><%= current_customer.nickname %></th>
+        </tr>
+        <tr>
+          <th>フォロー数：</th>
+          <th><%= current_customer.followings.count %></th>
+        </tr>
+        <tr>
+          <th>フォロワー数：</th>
+          <th><%= current_customer.followers.count %></th>
+        </tr>
+      </table>
 
-  <div class="col-sm-8">
-    <%= render "public/posts/index", posts: @posts %>
-  </div>
+      <div class="side-info my-3">
+        <% if current_customer.email != "guest@example.com" %>
+          <%= link_to edit_customer_path(current_customer.id), class: "btn btn-outline-secondary rounded-pill col-6" do %>
+            <i class="fas fa-user-cog fa-lg"></i>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+    </div>
+
+    <div class="col">
+      <%= link_to new_post_path do %>
+        <span class="fa-stack fa-lg offset-10 mb-3">
+          <i class="fas fa-circle fa-stack-2x", style="color: #4682b4"></i>
+          <i class="far fa-regular fa-pen-to-square fa-stack-1x", style="color: #fff"></i>
+        </span>
+      <% end %>
+      <%= render "public/posts/index", posts: @posts %>
+    </div>
 
   </div>
 </div>

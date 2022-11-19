@@ -1,0 +1,13 @@
+<!--current_customerじゃなかったら-->
+<% if current_customer != customer %>
+  <!--フォローしてたら？-->
+  <% if current_customer.following?(customer) %>
+    <%= link_to customer_relationships_path(customer.id), method: :delete, remote: true, class: "btn btn-info rounded-pill col-5" do %>
+      <i class="fa-solid fa-user-tag fa-lg"></i>
+    <% end %>
+  <% else %>
+    <%= link_to customer_relationships_path(customer.id), method: :post, remote: true, class: "btn btn-outline-info rounded-pill col-5" do %>
+      <i class="fa-solid fa-user-plus fa-lg"></i>
+    <% end %>
+  <% end %>
+<% end %>

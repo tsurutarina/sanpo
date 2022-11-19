@@ -1,19 +1,24 @@
-<div class="row">
+<div class="container">
+  <div class="row">
 
-  <div class="col-3 ml-3">
-    <% if customer_signed_in? %>
-      <%= render "public/customers/side-info-post", customer: @customer, post: @post %>
-    <% end %>
-  </div>
-
-  <div class="col-8">
-    <h5>"<%= @word %>"の検索結果</h5>
+    <div class="col">
+      <h5>"<%= @word %>"の検索結果</h5>
       <!--検索対象スポット-->
       <% if @range == "スポット" %>
-        <%= render "public/posts/index", posts: @posts %>
+        <% if @posts.exists? %>
+          <%= render "public/posts/index", posts: @posts %>
+        <% else %>
+          <p>一致する結果はありません</p>
+        <% end %>
+      <!--検索対象ユーザー-->
       <% else %>
-        <%= render "public/customers/index", customers: @customers %>
+        <% if @customers.exists? %>
+          <%= render "public/customers/index", customers: @customers %>
+        <% else %>
+          <p>一致する結果はありません</p>
+        <% end %>
       <% end %>
-  </div>
+    </div>
 
+  </div>
 </div>
