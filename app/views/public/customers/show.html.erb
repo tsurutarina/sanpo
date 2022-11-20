@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-sm-3 my-3">
+    <div class="col-sm-3">
       <table>
         <tr>
           <%= link_to customer_path(current_customer.id) do %>
-            <%= image_tag @customer.get_profile_image, size:'90x90', class: "rounded-circle" %>
+            <%= image_tag @customer.get_profile_image, size:'90x90', class: "rounded-circle mb-4" %>
           <% end %>
         </tr>
         <tr>
@@ -29,7 +29,7 @@
         </tr>
       </table>
 
-      <div class="side-info my-3">
+      <div class="side-info my-4">
         <div id="relationship_btn_<%= @customer.id %>">
           <%= render "public/relationships/btn", customer: @customer %>
         </div>
@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <div class="col-sm-8">
+    <div class="col">
       <h5><%= @customer.nickname %> さんの投稿</h5>
       <%= link_to new_post_path do %>
         <span class="fa-stack fa-lg offset-10 mb-3">

@@ -8,6 +8,5 @@ class Public::SearchesController < ApplicationController
       @customers = Customer.looks(params[:search], params[:word]).order(created_at: :desc)
     end
     @word = params[:word]
-    @post = Post.new
   end
 end

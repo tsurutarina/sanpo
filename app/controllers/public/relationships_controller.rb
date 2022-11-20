@@ -15,13 +15,11 @@ class Public::RelationshipsController < ApplicationController
   def followings
     @customer = Customer.find(params[:customer_id])
     @customers = @customer.followings.order(created_at: :desc)
-    @post = Post.new
   end
   # フォロワー一覧
   def followers
     @customer = Customer.find(params[:customer_id])
     @customers = @customer.followers.order(created_at: :desc)
-    @post = Post.new
   end
 
 end

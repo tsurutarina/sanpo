@@ -14,7 +14,9 @@
   </head>
     <%= render 'layouts/header' %>
   <body>
-    <%= render "layouts/alert" %>
-    <%= yield %>
+    <div class="mt-4">
+      <%= render "layouts/alert" %>
+      <%= yield %>
+    </div>
   </body>
 </html>

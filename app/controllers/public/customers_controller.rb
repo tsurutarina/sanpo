@@ -5,7 +5,6 @@ class Public::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
-    @post = Post.new
     @posts = @customer.posts
     # いいね総カウント
     @customer_posts = @customer.posts
@@ -33,14 +32,13 @@ class Public::CustomersController < ApplicationController
     if @customer.destroy
       redirect_to root_path, notice: "退会しました"
     else
-      @customer = Customer.find(params[:id])
-      render edit
+      render :edit
     end
   end
 
   def favorites
-    @customers = Customer.find(params[:id])
-    favorites = Favorite.where(customer_id: @customers.id).pluck(:post_id)
+    @customer = Customer.find(params[:id])
+    favorites = Favorite.where(customer_id: @customer.id).pluck(:post_id)
     @favorite_posts = Post.where(id: favorites)
   end
 

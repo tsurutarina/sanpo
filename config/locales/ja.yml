@@ -2,7 +2,13 @@ ja:
  activerecord:
    attributes:
      customer:
-       nickname: ユーザーネーム
+       email: メールアドレス
+       nickname: ユーザー名
+       password: パスワード
      post:
        body: 本文
+       spot_name: スポット
+       address_spot: 住所
        spot_image: 画像
+     post_comment:
+       comment: コメント
