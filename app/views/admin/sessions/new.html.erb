@@ -4,6 +4,11 @@
     <div class="col-sm-8 offset-sm-2">
       <h3>管理者ログイン</h3>
 
+      <% if flash[:alert] %>
+        <div class="alert alert-danger">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
       <%= form_for(resource, as: resource_name, url: admin_session_path) do |f| %>
       <%= render "admin/shared/error_messages", resource: resource %>
 

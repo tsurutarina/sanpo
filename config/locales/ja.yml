@@ -1,0 +1,8 @@
+ja:
+ activerecord:
+   attributes:
+     customer:
+       nickname: ユーザーネーム
+     post:
+       body: 本文
+       spot_image: 画像
