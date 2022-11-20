@@ -3,9 +3,10 @@
 
     <div class="col-sm-10 offset-1">
       <h4>ユーザー情報編集</h4>
-      <%= render "layouts/error_messages", model: @customer %>
 
       <%= form_with model: @customer, url: customer_path, local:true do |f| %>
+      <%= render "layouts/error_messages", model: f.object %>
+
         <div class="form-group mt-5">
           <%= f.label :profile_image, "アイコン", class: "col-sm-2" %>
           <%= f.file_field :profile_image, class: "offset-1", accept: "image/*" %>

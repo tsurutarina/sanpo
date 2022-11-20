@@ -45,15 +45,12 @@
       </div>
 
       <%= form_with model: [@post, @comment], local: false do |f| %>
-      <div class="form-group">
         <%= f.label :comment, "コメント" %><br>
         <%= f.text_area :comment, class:"col-9", placeholder: "思いを伝えよう！" %><br>
-
         <%= f.submit "送信", class: "btn btn-outline-success offset-8 rounded-pill" %>
       </div>
       <% end %>
     </div>
-  </div>
 
   </div>
 </div>

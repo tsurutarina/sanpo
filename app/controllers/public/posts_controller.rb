@@ -29,7 +29,7 @@ class Public::PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    @post.delete
+    @post.destroy
     redirect_to root_path, notice: "削除しました"
   end
 

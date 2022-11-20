@@ -31,7 +31,7 @@ class Public::CustomersController < ApplicationController
   def destroy
     @customer = Customer.find(params[:id])
     if @customer.destroy
-      redirect_to root_path, notice: "ユーザーを削除しました"
+      redirect_to root_path, notice: "退会しました"
     else
       @customer = Customer.find(params[:id])
       render edit
@@ -41,7 +41,7 @@ class Public::CustomersController < ApplicationController
   def favorites
     @customers = Customer.find(params[:id])
     favorites = Favorite.where(customer_id: @customers.id).pluck(:post_id)
-    @favorite_posts = Post.find(favorites)
+    @favorite_posts = Post.where(id: favorites)
   end
 
   private
