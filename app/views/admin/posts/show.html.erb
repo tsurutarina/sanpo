@@ -26,8 +26,11 @@
             </td>
           </tr>
           <tr>
-            <td>
-              <i class="fa-regular fa-comment ml-3"></i> <%= @post.body %>
+            <td class="shadow-sm">
+              <i class="fa-regular fa-comment ml-3"></i><br>
+              <div class="ml-5">
+                <%= safe_join(@post.body.split("\n"),tag(:br)) %>
+              </div>
             </td>
           </tr>
         </tbody>

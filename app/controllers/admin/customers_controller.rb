@@ -33,7 +33,7 @@ class Admin::CustomersController < ApplicationController
   def destroy
     @customer = Customer.find(params[:id])
     if @customer.destroy
-      redirect_to adminroot_path, notice: "ユーザーを削除しました"
+      redirect_to admin_root_path, notice: "ユーザーを削除しました"
     else
       @customer = Customer.find(params[:id])
       render edit, notice: "ユーザーの削除ができませんでした"

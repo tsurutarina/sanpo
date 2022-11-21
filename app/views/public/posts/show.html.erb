@@ -22,13 +22,16 @@
           <td><i class="fa-solid fa-map-location-dot"></i> <%= @post.address_spot %><br>
             <i class="fa-regular fa-flag"></i> <%= @post.spot_name %>
               <% if @post.customer == current_customer %>
-                <%= link_to "削除", post_path(@post), class: "btn btn-outline-danger btn-sm offset-2", method: :delete %>
+                <%= link_to "削除", post_path(@post), class: "btn btn-outline-danger btn-sm offset-5", method: :delete %>
               <% end %>
           </td>
         </tr>
         <tr>
           <td class="shadow-sm">
-            <i class="fa-regular fa-comment ml-3"></i> <%= @post.body %>
+            <i class="fa-regular fa-comment ml-3"></i><br>
+            <div class="ml-5">
+              <%= safe_join(@post.body.split("\n"),tag(:br)) %>
+            </div>
           </td>
         </tr>
         <tr>

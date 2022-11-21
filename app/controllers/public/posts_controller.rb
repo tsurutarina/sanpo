@@ -1,5 +1,5 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_customer!, only: [:show, :create, :destroy]
+  before_action :authenticate_customer!, only: [:new, :show, :create, :destroy]
   before_action :ensure_correct_customer, only: [:destroy]
 
   def index

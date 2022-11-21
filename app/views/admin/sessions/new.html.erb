@@ -12,18 +12,18 @@
       <%= form_for(resource, as: resource_name, url: admin_session_path) do |f| %>
       <%= render "admin/shared/error_messages", resource: resource %>
 
-        <div class="field ml-3">
-          <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <div class="field my-3">
+          <%= f.label :email, "メールアドレス: admin@admin", class: "col-sm-5" %><br>
+          <%= f.email_field :email, class:"col-8 col-lg-5", autofocus: true, autocomplete: "email" %>
         </div>
 
-        <div class="field ml-3">
-          <%= f.label :password %><br />
-          <%= f.password_field :password, autocomplete: "current-password" %>
+        <div class="field mb-4">
+          <%= f.label :password, "パスワード: adminpass", class: "col-sm-5" %><br>
+          <%= f.password_field :password, class:"col-5 col-lg-4", autocomplete: "current-password" %>
         </div>
 
-        <div class="field-action mt-3 ml-3">
-          <%= f.submit "ログイン" %>
+        <div class="field-action">
+          <%= f.submit "ログイン", class: "btn btn-outline-secondary col-4 offset-sm-1" %>
         </div>
       <% end %>
     </div>

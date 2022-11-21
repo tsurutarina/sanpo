@@ -2,7 +2,7 @@
   <div class="row">
 
     <div class="col-sm-10 offset-1">
-    <h5>ログイン</h5>
+    <h4>ログイン</h4>
 
     <% if flash[:alert] %>
       <div class="alert alert-danger">
@@ -23,7 +23,7 @@
       </div>
 
       <div class="field-action mt-3">
-        <%= f.submit "ログイン", class: "btn btn-outline-primary col-3 offset-sm-4" %>
+        <%= f.submit "ログイン", class: "btn btn-outline-primary col-4 offset-sm-4" %>
       </div>
     <% end %>
     </div>
@@ -37,7 +37,7 @@
   </div>
   <div class="row mt-5">
     <div class="col">
-      <%= link_to "管理者ログイン", new_admin_session_path, class: "btn btn-outline-secondary col-4 offset-8" %>
+      <%= link_to "管理者ログイン", new_admin_session_path, class: "btn btn-outline-secondary col-5 offset-7" %>
     </div>
   </div>
 </div>
