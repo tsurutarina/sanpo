@@ -47,6 +47,7 @@
         <%= render 'public/post_comments/index', post: @post %>
       </div>
 
+
       <%= form_with model: [@post, @comment], local: false do |f| %>
         <%= f.label :comment, "コメント" %><br>
         <%= f.text_area :comment, class:"col-9", placeholder: "思いを伝えよう！" %><br>
