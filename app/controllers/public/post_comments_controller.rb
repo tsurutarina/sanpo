@@ -9,7 +9,7 @@ class Public::PostCommentsController < ApplicationController
     @comment.post_id = @post.id
     if @comment.save
     else
-      redirect_to post_path(@post), notice: "コメントの送信に失敗しました"
+      redirect_to post_path(@post), alert: "コメントの送信に失敗しました"
     end
   end
 
