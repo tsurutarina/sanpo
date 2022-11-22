@@ -35,13 +35,14 @@
         </div>
 
         <% if @customer.email != "guest@example.com" %>
-        <% if @customer == current_customer %>
-          <%= link_to edit_customer_path(current_customer.id), class: "btn btn-outline-secondary rounded-pill col-6" do %>
-            <i class="fas fa-user-cog fa-lg"></i>
+          <% if @customer == current_customer %>
+            <%= link_to edit_customer_path(current_customer.id), class: "btn btn-outline-secondary rounded-pill col-6" do %>
+              <i class="fas fa-user-cog fa-lg"></i>
+            <% end %>
           <% end %>
         <% end %>
-        <% end %>
       </div>
+
     </div>
 
     <div class="col">

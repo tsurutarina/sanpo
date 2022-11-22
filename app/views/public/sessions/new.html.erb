@@ -1,6 +1,6 @@
 <div class="container mt-3">
-  <div class="row">
 
+  <div class="row">
     <div class="col-sm-10 offset-1">
     <h4>ログイン</h4>
 
@@ -10,22 +10,19 @@
       </div>
     <% end %>
     <%= form_with model: @customer, url: customer_session_path, id: 'new_customer', class: 'new_customer', local: true do |f| %>
-    <!--<= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>-->
-
       <div class="field mt-4">
         <%= f.label :email, "メールアドレス", class: "col-sm-3" %>
         <%= f.email_field :email, class:"col-8 col-lg-5", placeholder:"sample@example.com",autofocus: true, autocomplete: "email" %>
       </div>
-
       <div class="field">
         <%= f.label :password, "パスワード", class: "col-sm-3" %>
         <%= f.password_field :password, class:"col-5 col-lg-3", autocomplete: "current-password" %>
       </div>
-
       <div class="field-action mt-3">
         <%= f.submit "ログイン", class: "btn btn-outline-primary col-4 offset-sm-4" %>
       </div>
     <% end %>
+
     </div>
   </div>
 
@@ -35,9 +32,11 @@
       <%= link_to "こちら", new_customer_registration_path %> から新規登録してください。
     </div>
   </div>
+
   <div class="row mt-5">
     <div class="col">
       <%= link_to "管理者ログイン", new_admin_session_path, class: "btn btn-outline-secondary col-5 offset-7" %>
     </div>
   </div>
+
 </div>

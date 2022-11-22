@@ -8,56 +8,58 @@
       <%= image_tag 'spot', class: "w-50 rounded" %>
     <% end %>
 
-    <table class="table table-borderless">
-      <tbody>
-        <tr>
-          <td class="col-sm-1">
-            <%= link_to customer_path(@post.customer.id), class: "text-dark" do %>
-              <%= image_tag @post.customer.get_profile_image, size:'60x60', class: "rounded-circle" %>
-            <% end %>
-            <%= @post.customer.nickname %>
-          </td>
-        </tr>
-        <tr>
-          <td><i class="fa-solid fa-map-location-dot"></i> <%= @post.address_spot %><br>
-            <i class="fa-regular fa-flag"></i> <%= @post.spot_name %>
-              <% if @post.customer == current_customer %>
-                <%= link_to "削除", post_path(@post), class: "btn btn-outline-danger btn-sm offset-5", method: :delete %>
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td class="col-sm-1">
+              <%= link_to customer_path(@post.customer.id), class: "text-dark" do %>
+                <%= image_tag @post.customer.get_profile_image, size:'60x60', class: "rounded-circle" %>
               <% end %>
-          </td>
-        </tr>
-        <tr>
-          <td class="shadow-sm">
-            <i class="fa-regular fa-comment ml-3"></i><br>
-            <div class="ml-5">
-              <%= safe_join(@post.body.split("\n"),tag(:br)) %>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td id="favorite_btn_<%= @post.id %>">
-            <%= render 'public/favorites/btn', post: @post %>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+              <%= @post.customer.nickname %>
+            </td>
+          </tr>
+          <tr>
+            <td><i class="fa-solid fa-map-location-dot"></i> <%= @post.address_spot %><br>
+              <i class="fa-regular fa-flag"></i> <%= @post.spot_name %>
+                <% if @post.customer == current_customer %>
+                  <%= link_to "削除", post_path(@post), class: "btn btn-outline-danger btn-sm offset-5", method: :delete %>
+                <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td class="shadow-sm">
+              <i class="fa-regular fa-comment ml-3"></i><br>
+              <div class="ml-5">
+                <%= safe_join(@post.body.split("\n"),tag(:br)) %>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td id="favorite_btn_<%= @post.id %>">
+              <%= render 'public/favorites/btn', post: @post %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-    <div class="offset-1">
-      <div id="post_comment_<%= @post.id %>">
-        <%= render 'public/post_comments/index', post: @post %>
-      </div>
-
-      <% if flash[:alert] %>
-        <div class="alert alert-warning">
-          <%= alert %><button type="button" class="close" data-dismiss="alert">&times;</button>
+      <div class="offset-1">
+        <div id="post_comment_<%= @post.id %>">
+          <%= render 'public/post_comments/index', post: @post %>
         </div>
-      <% end %>
-      <%= form_with model: [@post, @comment], local: false do |f| %>
-        <%= f.label :comment, "コメント" %><br>
-        <%= f.text_area :comment, class:"col-9", placeholder: "思いを伝えよう！" %><br>
-        <%= f.submit "送信", class: "btn btn-outline-success offset-8 rounded-pill" %>
+
+        <% if flash[:alert] %>
+          <div class="alert alert-warning">
+            <%= alert %><button type="button" class="close" data-dismiss="alert">&times;</button>
+          </div>
+        <% end %>
+        <%= form_with model: [@post, @comment], local: false do |f| %>
+          <%= f.label :comment, "コメント" %><br>
+          <%= f.text_area :comment, class:"col-9", placeholder: "思いを伝えよう！" %><br>
+          <%= f.submit "送信", class: "btn btn-outline-success offset-8 rounded-pill" %>
+        <% end %>
+
       </div>
-      <% end %>
+
     </div>
 
   </div>

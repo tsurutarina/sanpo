@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-8 offset-sm-2">
 
+    <div class="col-sm-8 offset-sm-2">
       <% if @post.spot_image.attached? %>
         <%= image_tag @post.spot_image, class: "w-75 rounded" %>
       <% else %>
@@ -38,9 +38,9 @@
 
     <div class="offset-1">
       <p>コメント数 : <%= @post.post_comments.count %></p>
-       <% @post.post_comments.each do |post_comment| %>
-       <table class="table table-borderless">
-         <tr  class="shadow-sm bg-light">
+      <% @post.post_comments.each do |post_comment| %>
+      <table class="table table-borderless">
+        <tr  class="shadow-sm bg-light">
           <td class="col-1">
             <%= link_to admin_customer_path(post_comment.customer.id), class: "text-dark" do %>
               <%= image_tag post_comment.customer.get_profile_image, size:'45x45', class: "rounded-circle" %>
@@ -56,5 +56,6 @@
     </div>
 
     </div>
+
   </div>
 </div>

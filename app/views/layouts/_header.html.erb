@@ -1,6 +1,6 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f5f5f5;">
-      <a class="navbar-brand" href="/"><%= image_tag"picwish.png",size: "160x80" %></a>
+    <a class="navbar-brand" href="/"><%= image_tag"picwish.png",size: "160x80" %></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -22,7 +22,7 @@
           </li>
         <!--ログインしたら？-->
         <% elsif customer_signed_in? %>
-        <li>
+          <li>
             <%= link_to customer_path(current_customer.id), class: "nav-link text-dark text-center" do %>
               <i class="fa-regular fa-circle-user fa-2x"></i><br>
               マイページ
@@ -73,7 +73,6 @@
             <% end %>
           </li>
           <li>
-            <!--できない-->
             <%= link_to public_guest_sign_in_path, method: :post, class: "nav-link text-dark text-center" do %>
               <i class="fa-solid fa-user-group fa-2x"></i><br>
               ゲストログイン
