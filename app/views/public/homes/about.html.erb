@@ -10,29 +10,31 @@
     活気ある地元をより盛り上げたい気持ちから Sanpo@Nagareyama は作られました！
   </p>
 
-  <div class="row mt-5">
+  <div class="row">
     <div class="card-deck">
-      <div class="card">
+
+      <div class="card ml-3">
         <div class="card-body">
           <h3 class="card-title">投稿を見る</h3>
           <p class="card-text">会員登録せずにみんなの投稿を閲覧することができます<br>お気に入りのスポットを探してみましょう</p>
           <%= link_to "投稿一覧", root_path, class: "btn", style: "background-color: #F172A3; color: #fff;" %>
         </div>
       </div>
-      <div class="card">
+      <div class="card ml-3">
         <div class="card-body">
           <h3 class="card-title">ログイン</h3>
           <p class="card-text">ログインすることで投稿やブックマークができるようになります<br>おすすめスポットをみんなにも共有してみましょう</p>
           <%= link_to "ログイン", new_customer_session_path, class: "btn", style: "background-color: #00A4AC; color: #fff;" %>
         </div>
       </div>
-      <div class="card">
+      <div class="card ">
         <div class="card-body">
           <h3 class="card-title">新規会員登録</h3>
           <p class="card-text">初めての方はこちらから会員登録してください<br>素敵な投稿を見つけたらブックマークしてみましょう</p>
           <%= link_to "新規登録", new_customer_registration_path, class: "btn", style: "background-color: #00B379; color:#fff;" %>
         </div>
       </div>
+
     </div>
   </div>
 
