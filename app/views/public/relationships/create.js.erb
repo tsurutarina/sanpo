@@ -1,4 +1,4 @@
 $("#relationship_btn_<%= @customer.id %>").html("<%= j(render 'public/relationships/btn', customer: @customer) %>");
-$("#relationship_btn_<%= @customer.id %>").html("<%= j(render 'public/relationships/btn_icon', customer: @customer) %>");
+$("#relationship_btn_icon_<%= @customer.id %>").html("<%= j(render 'public/relationships/btn_icon', customer: @customer) %>");
 $("#following_count_<%= @customer.id %>").html("<%= @customer.followings.count %>");
 $("#follower_count_<%= @customer.id %>").html("<%= @customer.followers.count %>");
