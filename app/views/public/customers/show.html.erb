@@ -4,7 +4,7 @@
     <div class="col-sm-3">
       <table>
         <tr>
-          <%= link_to customer_path(current_customer.id) do %>
+          <%= link_to customer_path(@customer.id) do %>
             <%= image_tag @customer.get_profile_image, size:'90x90', class: "rounded-circle mb-4" %>
           <% end %>
         </tr>
