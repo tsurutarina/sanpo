@@ -12,15 +12,15 @@
       <%= form_for(resource, as: resource_name, url: admin_session_path) do |f| %>
       <%= render "admin/shared/error_messages", resource: resource %>
 
-        <div class="field my-3">
+        <div class="field mt-4">
           <%= f.label :email, "メールアドレス: admin@admin", class: "col-sm-5" %><br>
           <%= f.email_field :email, class:"col-8 col-lg-5", autofocus: true, autocomplete: "email" %>
         </div>
-        <div class="field mb-4">
+        <div class="field mt-3">
           <%= f.label :password, "パスワード: adminpass", class: "col-sm-5" %><br>
           <%= f.password_field :password, class:"col-5 col-lg-4", autocomplete: "current-password" %>
         </div>
-        <div class="field-action">
+        <div class="field-action mt-4">
           <%= f.submit "ログイン", class: "btn btn-outline-secondary col-4 offset-sm-1" %>
         </div>
 

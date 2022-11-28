@@ -2,7 +2,7 @@
 
   <div class="row">
     <div class="col-sm-10 offset-1">
-    <h4>ログイン</h4>
+    <h3>ログイン</h3>
 
     <% if flash[:alert] %>
       <div class="alert alert-danger">
@@ -14,12 +14,12 @@
         <%= f.label :email, "メールアドレス", class: "col-sm-3" %>
         <%= f.email_field :email, class:"col-11 col-lg-5", placeholder:"sample@example.com",autofocus: true, autocomplete: "email" %>
       </div>
-      <div class="field">
+      <div class="field mt-3">
         <%= f.label :password, "パスワード", class: "col-sm-3" %>
         <%= f.password_field :password, class:"col-8 col-lg-3", autocomplete: "current-password" %>
       </div>
-      <div class="field-action mt-3">
-        <%= f.submit "ログイン", class: "btn btn-outline-primary col-6 offset-sm-4" %>
+      <div class="field-action mt-4">
+        <%= f.submit "ログイン", class: "btn btn-outline-primary col-4 offset-sm-4" %>
       </div>
     <% end %>
 
