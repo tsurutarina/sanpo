@@ -26,18 +26,12 @@
 
 
 ## 設計書
-* ワイヤーフレーム
-
-　　https://drive.google.com/file/d/1kMqQLFHMsA6ppyxGt2kpMzngVs9-jqty/view?usp=sharing
 * 画面遷移図
 
 　　https://drive.google.com/file/d/1sZ0DJZMUgt9CZF7ba4Ehzs4mFGa6X-Wl/view?usp=sharing
 * ER図
 
 　　https://drive.google.com/file/d/1lvYKCgkMR2D1mzYY0523ZaciHnaqqC-g/view?usp=sharing
-* テーブル定義書
-
-　　https://docs.google.com/spreadsheets/d/1u1deReAM2XlW4Udl9EXsUl3i5wA-MHM0Bf93QsQZYtI/edit?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -45,6 +39,3 @@
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
-
-## 使用素材
-- 使用検討中です
