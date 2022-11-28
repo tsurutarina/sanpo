@@ -54,7 +54,7 @@
         <% end %>
         <%= form_with model: [@post, @comment], local: false do |f| %>
           <%= f.label :comment, "コメント" %><br>
-          <%= f.text_area :comment, class:"col-10", placeholder: "思いを伝えよう！" %><br>
+          <%= f.text_area :comment, class:"col-10 mt-3", placeholder: "思いを伝えよう！" %><br>
           <%= f.submit "送信", class: "btn btn-outline-success offset-8 rounded-pill" %>
         <% end %>
 
