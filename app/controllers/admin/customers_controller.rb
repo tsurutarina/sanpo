@@ -45,7 +45,7 @@ class Admin::CustomersController < ApplicationController
 
   def ensure_guest_customer
     @customer = Customer.find(params[:id])
-    if @customer.email == "guest@example.com"
+    if @customer == Customer.guest
       redirect_to admin_customer_path(@customer), notice: 'ゲストユーザーはプロフィール編集できません'
     end
   end

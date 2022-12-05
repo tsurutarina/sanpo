@@ -34,7 +34,7 @@
           <%= render "public/relationships/btn", customer: @customer %>
         </div>
 
-        <% if @customer.email != "guest@example.com" %>
+        <% if @customer != Customer.guest %>
           <% if @customer == current_customer %>
             <%= link_to edit_customer_path(current_customer.id), class: "btn btn-outline-secondary rounded-pill col-6" do %>
               <i class="fas fa-user-cog fa-lg"></i>

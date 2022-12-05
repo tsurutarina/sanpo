@@ -7,9 +7,9 @@ class Public::CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     @posts = @customer.posts
     # いいね総カウント
-    @customer_posts = @customer.posts
+    customer_posts = @customer.posts
     @favorites_count = 0
-    @customer_posts.each do |post|
+    customer_posts.each do |post|
       @favorites_count += post.favorites.count
     end
   end
@@ -52,7 +52,7 @@ class Public::CustomersController < ApplicationController
 
   def ensure_guest_customer
     @customer = Customer.find(params[:id])
-    if @customer.email == "guest@example.com"
+    if @customer == Customer.guest
       redirect_to customer_path(current_customer.id), notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません'
     end
   end
