@@ -24,8 +24,8 @@
       </table>
 
       <div class="side-info my-4">
-        <% if current_customer.email != "guest@example.com" %>
-          <%= link_to edit_customer_path(current_customer.id), class: "btn btn-outline-secondary rounded-pill col-6" do %>
+        <% if current_customer != Customer.guest %>
+          <%= link_to edit_customer_path(current_customer.id), class: "btn btn-outline-secondary rounded-pill col-9" do %>
             <i class="fas fa-user-cog fa-lg"></i>
           <% end %>
         <% end %>

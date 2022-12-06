@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-sm-3 my-3">
+    <div class="col-sm-3">
       <table>
-        <tr><%= image_tag @customer.get_profile_image, size:'100x100', class: "rounded-circle" %></tr>
+        <tr><%= image_tag @customer.get_profile_image, size:"90x90", class: "rounded-circle mb-4" %></tr>
         <tr>
           <th>ユーザー：</th>
           <th><%= @customer.nickname %></th>
@@ -22,12 +22,12 @@
         </tr>
       </table>
 
-      <div class="side-info">
+      <div class="side-info my-4">
         <%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-outline-secondary col-9" %>
       </div>
     </div>
 
-    <div class="col-sm-8">
+    <div class="col">
     <h5><%= @customer.nickname %> さんの投稿</h5>
 
       <table class="table table-hover table-inverse">
