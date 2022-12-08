@@ -3,7 +3,7 @@
 
     <div class="col">
     <% if @post.spot_image.attached? %>
-      <%= image_tag @post.spot_image, class: "w-50 rounded" %>
+      <%= image_tag @post.spot_image, class: "w-75 rounded" %>
     <% else %>
       <%= image_tag 'spot', class: "w-50 rounded" %>
     <% end %>

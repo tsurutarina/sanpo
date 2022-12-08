@@ -5,7 +5,7 @@ class Public::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
-    @posts = @customer.posts
+    @posts = @customer.posts.order(created_at: :desc)
     # いいね総カウント
     customer_posts = @customer.posts
     @favorites_count = 0
