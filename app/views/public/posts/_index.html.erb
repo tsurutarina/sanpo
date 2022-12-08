@@ -13,11 +13,11 @@
       </td>
       <td>
         <%= link_to customer_path(post.customer.id), class: 'nav-link text-dark' do %>
-          <%= image_tag post.customer.get_profile_image, size:'70x70', class: "rounded-circle" %>
+          <%= image_tag post.customer.get_profile_image, size: "70x70", class: "rounded-circle" %>
         <% end %>
       </td>
       <td>
-        <i class="fa-regular fa-flag"></i>  <%= post.spot_name %><br>
+        <strong><i class="fa-regular fa-flag"></i> <span><%= post.spot_name %></span></strong><br>
         <i class="fa-regular fa-comment"></i> <%= post.body %><br>
         <i class="fa-regular fa-comments ml-3"></i> : <%= post.post_comments.count %>
         <i class="fa-regular fa-heart ml-4"></i> : <%= post.favorites.count %>

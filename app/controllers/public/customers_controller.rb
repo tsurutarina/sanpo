@@ -39,7 +39,7 @@ class Public::CustomersController < ApplicationController
   def favorites
     @customer = Customer.find(params[:id])
     favorites = Favorite.where(customer_id: @customer.id).pluck(:post_id)
-    @favorite_posts = Post.where(id: favorites)
+    @favorite_posts = Post.where(id: favorites).order(created_at: :desc)
   end
 
   private

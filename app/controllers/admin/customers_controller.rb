@@ -3,12 +3,12 @@ class Admin::CustomersController < ApplicationController
   before_action :ensure_guest_customer, only: [:edit]
 
   def index
-    @customers = Customer.all
+    @customers = Customer.all.order(created_at: :desc)
   end
 
   def show
     @customer = Customer.find(params[:id])
-    @posts = @customer.posts
+    @posts = @customer.posts.order(created_at: :desc)
     # いいね総カウント
     @customer_posts = @customer.posts
     @favorites_count = 0
