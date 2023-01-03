@@ -25,17 +25,17 @@
 * 素敵なお店を共有したい時
 
 
-## 設計書
-* 画面遷移図
+<!--## 設計書-->
+<!--* 画面遷移図-->
 
-　　https://drive.google.com/file/d/1sZ0DJZMUgt9CZF7ba4Ehzs4mFGa6X-Wl/view?usp=sharing
-* ER図
+<!--　　https://drive.google.com/file/d/1sZ0DJZMUgt9CZF7ba4Ehzs4mFGa6X-Wl/view?usp=sharing-->
+<!--* ER図-->
 
-　　https://drive.google.com/file/d/1lvYKCgkMR2D1mzYY0523ZaciHnaqqC-g/view?usp=sharing
+<!--　　https://drive.google.com/file/d/1lvYKCgkMR2D1mzYY0523ZaciHnaqqC-g/view?usp=sharing-->
 
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
-- フレームワーク：Ruby on Rails
+- フレームワーク：Ruby on Rails,Bootstrap
 - JSライブラリ：jQuery
 - IDE：Cloud9

@@ -94,7 +94,7 @@
           <li class="navbar-nav ml-auto mt-3">
             <%= render "public/searches/form" %>
           </li>
-          <!--ユーザー-->
+          <!--ログイン済みユーザー-->
           <li class="navbar-nav ml-auto">
             <%= link_to destroy_customer_session_path, method: :delete, class: "nav-link text-dark text-center" do %>
               <i class="fa-solid fa-right-from-bracket fa-2x"></i><br>
