@@ -49,7 +49,7 @@
     <div class="card">
       <div class="card-body">
         <h3 class="card-title">マップで調べる</h3>
-        <p class="card-text">気になるスポットがどこにあるか調べてみましょう<br>新しい発見があるかもしれません</p>
+        <p class="card-text">現在閉鎖中です</p>
         <div class="btn", style="background-color: #ff8c00;"><a class="text-light" href="#verse2">流山マップ</a></div>
       </div>
     </div>
@@ -87,63 +87,7 @@
         </a>
       </div>
     </div>
-
-  <!--地図-->
-    <div class="row">
-      <div class="col offset-1">
-        <h4 id="verse2"><i class="fa-solid fa-map-location-dot"></i> 流山マップ</h4>
-      <div class="spot-search">
-        <input id="address" type="textbox" value="流山市役所">
-        <input type="button" value="調べる" onclick="codeAddress()">
-      </div>
-
-      <div id="display"></div>
-      <div id='map' style="height: 600px; width: 90%;"></div>
-      </div>
-    </div>
-
+    
   </div>
-  <!--イベントごとの動き-->
-　<script>
-　  let map
-　  let geocoder
-　　const display = document.getElementById('display')
-　　// 地図表示するとき
-    function initMap(){
-      geocoder = new google.maps.Geocoder()
-      // デフォルト表示、マーカー
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 35.8563392, lng:139.9029533},
-        zoom: 15,
-      });
-      marker = new google.maps.Marker({
-        position:  {lat: 35.8563392, lng:139.9029533},
-        map: map
-      });
-    }
-
-    // 検索ボタン押されたら実行
-    function codeAddress(){
-      // 入力取得
-      let inputAddress = document.getElementById('address').value;
-      geocoder.geocode( { 'address': inputAddress}, function(results, status) {
-        // 検索ヒット時、緯度経度更新
-        if (status == 'OK') {
-          // 新しくマーカー作成
-          map.setCenter(results[0].geometry.location);
-          var marker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location
-          });
-          display.textContent = "検索結果：" + results[ 0 ].geometry.location
-        } else {
-          alert('該当する結果がありませんでした：' + status);
-        }
-      });
-    }
-
-  </script>
-
-　<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
-
+  
 </div>
